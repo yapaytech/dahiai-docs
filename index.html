@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Dahi.ai Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -210,11 +210,9 @@
     </a>
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
+      <div class="logo-title">Dahi.ai Docs</div>
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,7 +220,95 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
+            <a href="#dahi-ai" class="toc-h1 toc-link" data-title="Dahi.ai">Dahi.ai</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#about" class="toc-h2 toc-link" data-title="About">About</a>
+                  </li>
+                  <li>
+                    <a href="#registration" class="toc-h2 toc-link" data-title="Registration">Registration</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#bot" class="toc-h1 toc-link" data-title="Bot">Bot</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#bot-create" class="toc-h2 toc-link" data-title="Bot Create">Bot Create</a>
+                  </li>
+                  <li>
+                    <a href="#bot-intents" class="toc-h2 toc-link" data-title="Bot Intents">Bot Intents</a>
+                  </li>
+                  <li>
+                    <a href="#creation" class="toc-h2 toc-link" data-title="Creation">Creation</a>
+                  </li>
+                  <li>
+                    <a href="#settings" class="toc-h2 toc-link" data-title="Settings">Settings</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#intent" class="toc-h1 toc-link" data-title="Intent">Intent</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#how-to-create-intent" class="toc-h2 toc-link" data-title="How to Create Intent?">How to Create Intent?</a>
+                  </li>
+                  <li>
+                    <a href="#input" class="toc-h2 toc-link" data-title="Input">Input</a>
+                  </li>
+                  <li>
+                    <a href="#variables" class="toc-h2 toc-link" data-title="Variables">Variables</a>
+                  </li>
+                  <li>
+                    <a href="#output" class="toc-h2 toc-link" data-title="Output">Output</a>
+                  </li>
+                  <li>
+                    <a href="#operation" class="toc-h2 toc-link" data-title="Operation">Operation</a>
+                  </li>
+                  <li>
+                    <a href="#forward" class="toc-h2 toc-link" data-title="Forward">Forward</a>
+                  </li>
+                  <li>
+                    <a href="#settings-2" class="toc-h2 toc-link" data-title="Settings">Settings</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#entity" class="toc-h1 toc-link" data-title="Entity">Entity</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#types" class="toc-h2 toc-link" data-title="Types">Types</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#live" class="toc-h1 toc-link" data-title="Live">Live</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#live-settings" class="toc-h2 toc-link" data-title="Live Settings">Live Settings</a>
+                  </li>
+                  <li>
+                    <a href="#facebook-integration" class="toc-h2 toc-link" data-title="Facebook Integration">Facebook Integration</a>
+                  </li>
+                  <li>
+                    <a href="#live-chat-test-page" class="toc-h2 toc-link" data-title=" Live-chat Test Page"> Live-chat Test Page</a>
+                  </li>
+                  <li>
+                    <a href="#persistent-menu" class="toc-h2 toc-link" data-title="Persistent Menu">Persistent Menu</a>
+                  </li>
+                  <li>
+                    <a href="#live-agent-panel" class="toc-h2 toc-link" data-title="Live Agent Panel">Live Agent Panel</a>
+                  </li>
+                  <li>
+                    <a href="#live-analytics" class="toc-h2 toc-link" data-title="Live Analytics">Live Analytics</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#extras" class="toc-h1 toc-link" data-title="Extras">Extras</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -241,19 +327,447 @@
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><u>Usefull Links</u></li>
+            <li><a href='http://dahi.ai'>Register to Dahi.ai</a></li>
+            <li><a href='http://dahi.ai/live'>Live-Chat</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
+        <h1 id='dahi-ai'>Dahi.ai</h1><h2 id='about'>About</h2>
+<blockquote>
+<p><img src="images/home.png" alt="Home" /></p>
+</blockquote>
+
+<p>Dahi.ai is a chat-bot creation platform. Our system&#39;s most basic feature is it&#39;s how easy to create a basic chat-bot in couple of minutes. And grow with step by step.</p>
+
+<p>Dahi.ai has couple of systems within. One is chat-bot the other one is live-chat and more...</p>
+
+<p>Chat-bot system is responsible of what to response to questions.
+Live-chat system is responsible of delivering messages between chat-bot, customer and customer service agent.</p>
+
+<p>There couple of more system that helps or adds more features to the stack.
+For example template feature. This is one of the new features that is open to the users. With template system you can connect your api&#39;s to dahi.ai without needing to code a new message formating system and host it. With template you can create your micro-service&#39;s that hosted in our system to help you create and modify api responses beyond just text outputing.</p>
+<h2 id='registration'>Registration</h2>
+<blockquote>
+<p><img src="images/dahi-register.png" alt="register" /></p>
+</blockquote>
+
+<p><a href="http://dahi.ai/register">Go to Register Page</a></p>
+
+<p>Registering is easy, just go to <a href="http://dahi.ai/register">register page</a>. Type your name, surname, email, password and repeat the same password. Click to register button and you&#39;re done.</p>
+
+<p>Dahi.ai Platform is free. You can start to create your chat-bot without coding required.</p>
+
+<aside class="notice">
+If you want to upgrade your account to premium tier you can contact us from <a class="mailto" href="mailto:info@yapaytech.com">info@yapaytech.com</a>
+</aside>
+<h1 id='bot'>Bot</h1>
+<blockquote>
+<p><img src="images/dahi-bot.png" alt="dahi-bot" /></p>
+</blockquote>
+
+<p>Here you can create, delete and modify your chat-bots. </p>
+
+<ul>
+<li>To edit this bot&#39;s intent click over it.</li>
+<li>To edit this bot&#39;s name or delete it click to the settings button at the right of the list.</li>
+<li>To create new bot click to &quot;Add new Bot&quot; button.</li>
+</ul>
+<h2 id='bot-create'>Bot Create</h2>
+<blockquote>
+<p><img src="images/dahi-bot-create.png" alt="bot-create" /></p>
+</blockquote>
+
+<p>Creating a new bot is easy you just have to give it a name and select which language you want to create a bot. Click &quot;done&quot; button to finishing the bot creation. You can change this settings after in chat settings page.</p>
+<h2 id='bot-intents'>Bot Intents</h2>
+<blockquote>
+<p><img src="images/dahi-intent.png" alt="bot-intents" /></p>
+</blockquote>
+
+<p>This is where we can add logic to our bot. Every intent is responsible for a job. Some to detect user inputs and response, some to create more complex logic to improve user engagement.</p>
+
+<p>For more information <a href="#intent">check out intent documentation section</a></p>
+<h2 id='creation'>Creation</h2><h2 id='settings'>Settings</h2><h1 id='intent'>Intent</h1><h2 id='how-to-create-intent'>How to Create Intent?</h2><h3 id='basic-intent-hello-world'>Basic Intent - Hello World</h3>
+<blockquote>
+<p>Hello World!
+<img src="images/intent_2.png" alt="alt text" /></p>
+</blockquote>
+
+<p>I will show you how to create an easy intent to your bot.
+Let&#39;s make a Hello World! intent.
+This intent has just one job. Whenever user says hello, it will make to your bot response as &#39;Hello World&#39;.</p>
+
+<ol>
+<li>Select your bot from bots list.</li>
+<li>Click Intents on the left side.</li>
+<li>Click ADD button in the opening page.</li>
+<li>Name your intent.</li>
+<li>Type your inputs on the Define User Says section and press enter.</li>
+<li>Enter your output text which will be shown to yours.</li>
+<li>Finally, Save your intent with save button on the upper-right corner.</li>
+</ol>
+<h3 id='advanced-intent'>Advanced Intent</h3><h2 id='input'>Input</h2>
+<p>On here, you are defining what user inputs will trigger your intent. You can enter a long sentence here as well as a single word. It&#39;s all about what user&#39;s input should activate your intent. </p>
+
+<p>After entered your sentence, you can see each word are clickable. You can select those words for marking them as required word. This mean whenever user enter an input sentence, system check this sentence with each input row and activate it if and only if sentence contains row&#39;s all required words.</p>
+
+<p>If there are some unnecessary or wrong sentences you can remove them with delete button on the right side.</p>
+<h2 id='variables'>Variables</h2><h3 id='what-is-variable'>What is Variable?</h3>
+<p>Variable is a value that can change, depending on conditions or on information passed to the intent. It is useful for store the value and use it on other part in the intent such as operation section or forward section.</p>
+<h3 id='how-to-create-variable'>How to create Variable?</h3>
+<p>Enter your variable&#39;s name to input area below Define Variable header. After you enter, there will be a row about its attributes. </p>
+
+<blockquote>
+<p><img src="images/intent_inp_1.png" alt="alt text" /></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th style="text-align: center">Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">Name</td>
+<td>Name of your variable. It must be unique.(Required)</td>
+</tr>
+<tr>
+<td style="text-align: center">Type</td>
+<td>Variable type. You can choose one of the 12 types in the list such as Text, Array etc. Please look Variable Type for further info. (Required)</td>
+</tr>
+<tr>
+<td style="text-align: center">Entity</td>
+<td>Required for only array-like variable types. You can select from your entities or system entities.</td>
+</tr>
+<tr>
+<td style="text-align: center">Question</td>
+<td>If variable has no value, system will prompt this area text to user and will set the answer to this variable. (Required)</td>
+</tr>
+<tr>
+<td style="text-align: center">Details</td>
+<td>You can set some specific values to your variable in here such as regex or default value. For further info please look Extras section.</td>
+</tr>
+<tr>
+<td style="text-align: center">Remove</td>
+<td>This button will remove the variable row.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><img src="images/intent_inp_2.png" alt="alt text" /></p>
+</blockquote>
+
+<p>After filling all required areas now your variable is ready to use it. 
+In anywhere in the intent you can call your variable with {$myVariableName}. </p>
+<h3 id='variable-types'>Variable Types</h3>
+<table><thead>
+<tr>
+<th style="text-align: center">Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: center">Text</td>
+<td>For string values</td>
+<td>&quot;Hello&quot;</td>
+</tr>
+<tr>
+<td style="text-align: center">Int</td>
+<td>For integer values</td>
+<td>12456</td>
+</tr>
+<tr>
+<td style="text-align: center">Identifier</td>
+<td>For 11 digit country identification number. Only for turkey right now.</td>
+<td>12345678901</td>
+</tr>
+<tr>
+<td style="text-align: center">Location</td>
+<td>For location value such as location sharing messages</td>
+<td>41.015137,28.979530</td>
+</tr>
+<tr>
+<td style="text-align: center">Email</td>
+<td>For email values</td>
+<td>myemail@yapaytech.com</td>
+</tr>
+<tr>
+<td style="text-align: center">Phone</td>
+<td>For phone type values</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center">Datetime</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center">Time</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center">Date</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center">Array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center">Horizontal Scroll Array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: center">Multi Array</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='output'>Output</h2><h2 id='operation'>Operation</h2><h2 id='forward'>Forward</h2><h2 id='settings-2'>Settings</h2><h1 id='entity'>Entity</h1><h2 id='types'>Types</h2><h3 id='array'>Array</h3><h3 id='horizontal'>Horizontal</h3><h1 id='live'>Live</h1>
+<p>Live-Chat can be described as a messaging system. <a href="http://dahi.ai/live">http://dahi.ai/live</a></p>
+
+<p>Dahi.ai composed of two system first is chat bots. Second is messaging system aka. Live-chat. Live-chat is most easy way to provide a user integration system without any hurdle.</p>
+
+<p>Also with live-chat&#39;s agent section you can use live-chat as a mix of chat-bot and customer service. With doing so your chat-bot can answer most of the user&#39;s questions and if it can&#39;t answer user&#39;s question can pass the conversation to agents.</p>
+
+<p>Live-chat&#39;s some features;</p>
+
+<ul>
+<li>Provide a javascript chat script that can be added to any website.</li>
+<li>Connect a facebook page to chat-bot system.</li>
+<li>Feature to set when will chat-bot be active. (always or outside of work hours)</li>
+<li>Add wellcome message to your chat-bot.</li>
+<li>Can work with Chat-bot and Customer Service Agents at the same time.</li>
+</ul>
+<h2 id='live-settings'>Live Settings</h2>
+<p>In this section you can modify your live-chat, add agents, connect live-chat to a facebook chat and more. <a href="http://dahi.ai/live/settings">http://dahi.ai/live/settings</a></p>
+<h3 id='main-settings'>Main Settings</h3>
+<p>Main live-chat settings.</p>
+
+<blockquote>
+<p><img src="images/live-settings.png" alt="Live-Settings" /></p>
+</blockquote>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">Chat Name</td>
+<td>Live Chat Name</td>
+</tr>
+<tr>
+<td style="text-align: right">Product Type</td>
+<td>Your product&#39;s subscribtion tier. (Free or Premium)</td>
+</tr>
+<tr>
+<td style="text-align: right">Bot</td>
+<td>Section to select which bot is connected to live-chat. You can select any of your chat-bot.</td>
+</tr>
+<tr>
+<td style="text-align: right">Edit Persistent Menu</td>
+<td>Section to edit your chat-bot&#39;s shortcut menu. <a href="#persistent-menu">For More Information</a></td>
+</tr>
+<tr>
+<td style="text-align: right">When Bot Active</td>
+<td>Section to select when will your bot will be active. Always or Outside of Work Hours (Hidden if bot isn&#39;t selected.)</td>
+</tr>
+<tr>
+<td style="text-align: right">Working Hours</td>
+<td>Section to configure your working hours. (Hidden if Always Selected in When Bot is Active)</td>
+</tr>
+</tbody></table>
+<h3 id='agent-settings'>Agent Settings</h3>
+<blockquote>
+<p><img src="images/live-agent.png" alt="Live-Agent" /></p>
+</blockquote>
+
+<p>Where you can add or remove your live-chat agents.</p>
+
+<p>To add a agent there are some requirements.</p>
+
+<ol>
+<li>You must be owner of the live-chat.</li>
+<li>The mail adress you&#39;re trying to add as a agent must be registered user of dahi.ai.</li>
+<li>The mail adress you&#39;re trying to add as a agent must not be owner or agent of another live-chat.</li>
+</ol>
+
+<p>Adding an agent is easy;</p>
+
+<ol>
+<li>Click &quot;Add New&quot; Button at the right of the screen in agent section.</li>
+<li>Type the mail adress of user you want to add as agent.</li>
+<li>Click &quot;Add&quot; Button. And that&#39;s it.</li>
+</ol>
+<h3 id='live-widget-script'>Live-Widget Script</h3>
+<blockquote>
+<p><img src="images/live-widget.png" alt="Live-Script" /></p>
+</blockquote>
+
+<p>This is the script you can use to add a live chat that your visitors can use to chat with your chat-bot or agents.
+Click &quot;Copy to Clipboard&quot; and paste the script in your website somewhere.</p>
+<h3 id='live-widget-script-settings'>Live-Widget Script Settings</h3>
+<blockquote>
+<p><img src="images/live-script-general.png" alt="Live-Script" /></p>
+</blockquote>
+<h5 id='general-settings'>General Settings</h5>
+<table><thead>
+<tr>
+<th style="text-align: right">Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">Chat Name</td>
+<td>Live-chat name that shown to user in live-chat script.</td>
+</tr>
+<tr>
+<td style="text-align: right">Image Url</td>
+<td>Live chat user image that shown to user.</td>
+</tr>
+<tr>
+<td style="text-align: right">Width Size</td>
+<td>Live chat script width size. (px)</td>
+</tr>
+<tr>
+<td style="text-align: right">Height Size</td>
+<td>Live chat script height size. (px)</td>
+</tr>
+<tr>
+<td style="text-align: right">Enoji</td>
+<td>Add abilty to send emojis in live-chat</td>
+</tr>
+<tr>
+<td style="text-align: right">User Invites</td>
+<td>Add abilty to invite other users to chat.</td>
+</tr>
+<tr>
+<td style="text-align: right">Widget Type</td>
+<td>Widget type. Currently cirle or widgetbox.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p><img src="images/live-script-register.png" alt="Live-Script" /></p>
+</blockquote>
+<h4 id='register-settings'>Register Settings</h4>
+<table><thead>
+<tr>
+<th style="text-align: right">Key</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">Name Surname</td>
+<td>When chat start should live-chat ask for user&#39;s name setting.</td>
+</tr>
+<tr>
+<td style="text-align: right">Email Adress</td>
+<td>When chat start should live-chat ask for user&#39;s email setting.</td>
+</tr>
+<tr>
+<td style="text-align: right">Phone Number</td>
+<td>When chat start should live-chat ask for user&#39;s phone number setting.</td>
+</tr>
+</tbody></table>
+<h4 id='color-settings'>Color Settings</h4>
+<p>Where you can change live-chat color palatte.</p>
+<h4 id='language-settings'>Language Settings</h4>
+<p>Where you can change live-chat language options or placeholder texts.</p>
+<h2 id='facebook-integration'>Facebook Integration</h2>
+<blockquote>
+<p><img src="images/live-face-integration.png" alt="Live-Script" /></p>
+</blockquote>
+
+<p>Here you can connect any of your facebook page to live-chat. Any message that your page recieve will be forward to live-chat and vice versa. In live-chat agent section you can view and response to messages your live chat recieve. Or if your live-chat has any chat-bot connected, it will automaticly reply to your customer&#39;s questions. This is the easiest way to connect your chat-bot to any facebook page.</p>
+
+<p>To connect a page to live chat follow this steps.</p>
+
+<ol>
+<li>Connect to facebook.</li>
+<li>Give permissions to Dahi.ai Chatbot.</li>
+<li>Click the &quot;Connect to Page&quot; button at the right of the page list.</li>
+</ol>
+<h2 id='live-chat-test-page'> Live-chat Test Page</h2>
+<blockquote>
+<p><img src="images/live-test-page.png" alt="Live-Test" /></p>
+</blockquote>
+
+<p>In the live-chat settings page at the right bottom corner of your screen you will a &quot;Go To Your Client Test Page&quot; Button. This will open a page where you can test your live chat and simulate an user interaction.</p>
+
+<p><img src="images/live-test.png" alt="Live-Test" /></p>
+
+<p>With this you can test your script and chat-bot before you add it to your website or facebook page.</p>
+<h2 id='persistent-menu'>Persistent Menu</h2>
+<blockquote>
+<p><img src="images/face-persistent.png" alt="Live-Persistent-Menu" />
+<img src="images/live-persistent.png" alt="Live-Persistent-Menu" /></p>
+</blockquote>
+
+<p>Persistent Menu is a way to add shortcut buttons to live-chat and provide user with some go to options. You can add payload or web_url buttons in persistent menu.</p>
+
+<p>Payload buttons will trigger an intent start event when user will click on them. With this button you can add some shortcuts to your intents.</p>
+
+<p>Web_Url buttons will trigger an open web-view event in mobile and open url in new tab in pc. With this you can forward your users some external sites or resources like when an user want to buy your latest song you can put a link to your itunes page here.</p>
+
+<p>Some extra information</p>
+
+<ul>
+<li>Persistent Menu is supported both by facebook messenger and live-chat script.</li>
+<li>You can have maximum 3 buttons in facebook.</li>
+<li>You can reorder your buttons using hook at the right of the buttons in persistent menu editor. (visible when mouse is hovered in a line)</li>
+<li>Support for more button and nested buttons are in development. When it&#39;s ready we&#39;ll be updating this editor section.</li>
+</ul>
+
+<p><img src="images/persistent.png" alt="Persistent-Menu" /></p>
+<h2 id='live-agent-panel'>Live Agent Panel</h2>
+<blockquote>
+<p><img src="images/agent-panel.png" alt="Live-Agent" /></p>
+</blockquote>
+
+<p>Live Agent Section is where you can see your live-chat conversations, join them to answer user&#39;s questions where your bot is not able to or see whether your chat-bot did stuck at some type of questions. </p>
+
+<p>This is where you and your agents can interact with live-chat and your customers.</p>
+
+<p>Here you can select an user at the right of the screen and see their conversation history.
+If you want to join the chat and answer instead of chat-bot you can click the &quot;Join Conversation&quot; Button at the right top corner of the panel. And when you want to give back the conversation to chat-bot just click the &quot;Leave Conversation&quot; Button.</p>
+
+<p>At the right of the screen you can see 3 tabs at the top of the users list. You can use this options to filter users.</p>
+
+<ul>
+<li>All: Every user that is currently is talking to bot or you.</li>
+<li>Open: Every user that is currently is talking to bot or no-one.</li>
+<li>Bound: Every user that is currently is talking to you.</li>
+</ul>
+
+<p>If a conversation is bound to any agent, bot will not answer any question that customer is asking. So to enable bot again either you should leave conversation when you don&#39;t want to talk to the user anymore or end the conversation if you think is user won&#39;t be asking any more question anytime soon.</p>
+
+<p>Some extra information</p>
+
+<ul>
+<li>At the right bottom corner of user images in user list you can see which platform user is coming from.</li>
+<li>At the left of the names of user in user list you can see if the user is online or not. (green for online, grey for offline)</li>
+<li>If you click the big (i) button or name of the user at the top of the message panel you can see more information about this user.</li>
+<li>At the left of the join button you can see if the current conversation is bound to whom or is bount to bot or not.</li>
+</ul>
+<h2 id='live-analytics'>Live Analytics</h2>
+<blockquote>
+<p><img src="images/live-analytics.png" alt="live-analytics" /></p>
+</blockquote>
+
+<p>Here you can find some usefull information about your live-chat bot and usage information. Currently this section is in development.</p>
+<h1 id='introduction'>Introduction</h1><h1 id='extras'>Extras</h1>
 <p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
 
 <p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
@@ -263,21 +777,18 @@
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"test"</span><span class="p">:</span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"alone"</span><span class="p">:</span><span class="s2">"trust"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+</span></code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p><img src="images/logo.png" alt="alt text" />
+Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
 </blockquote>
 
 <p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
@@ -289,20 +800,8 @@ curl <span class="s2">"api_endpoint_here"</span>
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
+<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -393,21 +892,9 @@ Remember — a happy kitten is an authenticated kitten!
 <td>The ID of the kitten to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
+<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
   -X DELETE
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -432,70 +919,11 @@ Remember — a happy kitten is an authenticated kitten!
 <td>The ID of the kitten to delete</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
