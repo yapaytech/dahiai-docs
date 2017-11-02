@@ -59,11 +59,41 @@ Variable is a value that can change, depending on conditions or on information p
 
 ### How to create Variable?
 
+
+> ![alt text](/images/intent_inp_1.png)
+
 Enter your variable's name to input area below Define Variable header. After you enter, there will be a row about its attributes. 
+
+|   Key    | Description                                                                                                                                      |
+|:--------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
+|   Name   | Name of your variable. It must be unique.(Required)                                                                                              |
+|   Type   | Variable type. You can choose one of the 12 types in the list such as Text, Array etc. Please look Variable Type for further info. (Required)    |
+|  Entity  | Required for only array-like variable types. You can select from your entities or system entities.                                               |
+| Question | If variable has no value, system will prompt this area text to user and will set the answer to this variable. (Required)                         |
+|  Details | You can set some specific values to your variable in here such as regex or default value. For further info please look Extras section.           |
+|  Remove  | This button will remove the variable row.                                                                                                        |
+
+> ![alt text](/images/intent_inp_2.png)
+
+After filling all required areas now your variable is ready to use it. 
+In anywhere in the intent you can call your variable with {$myVariableName}. 
 
 ### Variable Types
 
-
+|           Type          | Description |
+|:-----------------------:|-------------|
+| Text                    |             |
+| Int                     |             |
+| Indentifier             |             |
+| Location                |             |
+| Email                   |             |
+| Phone                   |             |
+| Datetime                |             |
+| Time                    |             |
+| Date                    |             |
+| Array                   |             |
+| Horizontal Scroll Array |             |
+| Multi Array             |             |
 
 ## Output
 ## Operation
