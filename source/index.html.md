@@ -23,12 +23,52 @@ search: true
 ## Settings
 
 # Intent
-## User Says
+## How to Create Intent?
+### Basic Intent - Hello World
+
+> Hello World!
+> ![alt text](/images/intent_2.png)
+
+I will show you how to create an easy intent to your bot.
+Let's make a Hello World! intent.
+This intent has just one job. Whenever user says hello, it will make to your bot response as 'Hello World'.
+
+1. Select your bot from bots list.
+2. Click Intents on the left side.
+3. Click ADD button in the opening page.
+4. Name your intent.
+5. Type your inputs on the Define User Says section and press enter.
+6. Enter your output text which will be shown to yours.
+7. Finally, Save your intent with save button on the upper-right corner.
+
+### Advanced Intent 
+
+## Input
+
+On here, you are defining what user inputs will trigger your intent. You can enter a long sentence here as well as a single word. It's all about what user's input should activate your intent. 
+
+After entered your sentence, you can see each word are clickable. You can select those words for marking them as required word. This mean whenever user enter an input sentence, system check this sentence with each input row and activate it if and only if sentence contains row's all required words.
+
+If there are some unnecessary or wrong sentences you can remove them with delete button on the right side.
+
 ## Variables
+
+### What is Variable?
+
+Variable is a value that can change, depending on conditions or on information passed to the intent. It is useful for store the value and use it on other part in the intent such as operation section or forward section.
+
+### How to create Variable?
+
+Enter your variable's name to input area below Define Variable header. After you enter, there will be a row about its attributes. 
+
+### Variable Types
+
+
+
 ## Output
 ## Operation
 ## Forward
-
+## Settings
 # Entity
 
 ## Types 
@@ -198,6 +238,8 @@ Here you can find some usefull information about your live-chat bot and usage in
 
 
 # Introduction
+# Extras
+
 
 Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
