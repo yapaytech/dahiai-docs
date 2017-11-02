@@ -13,6 +13,35 @@ includes:
 
 search: true
 ---
+# Dahi.ai
+## About
+## Registration
+
+# Bot
+## Creation
+
+## Settings
+
+# Intent
+## User Says
+## Variables
+## Output
+## Operation
+## Forward
+
+# Entity
+
+## Types 
+### Array
+### Horizontal
+# Live
+## Settings
+## Live Panel
+
+#Integrations
+## Facebook
+
+
 
 # Introduction
 
