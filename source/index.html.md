@@ -5,11 +5,12 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <u>Usefull Links</u>
+  - <a href='http://dahi.ai'>Register to Dahi.ai</a>
+#  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+#  - errors
 
 search: true
 ---
@@ -231,11 +232,6 @@ Some extra information
 > ![live-analytics](/images/live-analytics.png)
 
 Here you can find some usefull information about your live-chat bot and usage information. Currently this section is in development.
-
-#Integrations
-## Facebook
-
-
 
 # Introduction
 # Extras
