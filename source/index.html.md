@@ -62,9 +62,11 @@ Variable is a value that can change, depending on conditions or on information p
 ### How to create Variable?
 
 
-> ![alt text](/images/intent_inp_1.png)
 
 Enter your variable's name to input area below Define Variable header. After you enter, there will be a row about its attributes. 
+
+> ![alt text](/images/intent_inp_1.png)
+
 
 |   Key    | Description                                                                                                                                      |
 |:--------:|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -82,24 +84,33 @@ In anywhere in the intent you can call your variable with {$myVariableName}.
 
 ### Variable Types
 
-|           Type          | Description |
-|:-----------------------:|-------------|
-| Text                    |             |
-| Int                     |             |
-| Indentifier             |             |
-| Location                |             |
-| Email                   |             |
-| Phone                   |             |
-| Datetime                |             |
-| Time                    |             |
-| Date                    |             |
-| Array                   |             |
-| Horizontal Scroll Array |             |
-| Multi Array             |             |
+|           Type          | Description | Example |
+|:-----------------------:|-------------|---------|
+| Text                    | For string values | "Hello"       |
+| Int                     | For integer values            |     12456    |
+| Identifier              | For 11 digit country identification number. Only for turkey right now. |  12345678901       |
+| Location                | For location value such as location sharing messages |  41.015137,28.979530  |
+| Email                   | For email values | myemail@yapaytech.com |
+| Phone                   | For phone type values |         |
+| Datetime                |             |         |
+| Time                    |             |         |
+| Date                    |             |         |
+| Array                   |             |         |
+| Horizontal Scroll Array |             |         |
+| Multi Array             |             |         |
 
 ## Output
+
+
+
 ## Operation
+
+
+
 ## Forward
+
+
+
 ## Settings
 # Entity
 
