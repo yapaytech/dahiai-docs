@@ -60,29 +60,45 @@ In anywhere in the intent you can call your variable with {$myVariableName}.
 
 |           Type          | Description | Example |
 |:-----------------------:|-------------|---------|
-| Text                    | For string values | "Hello"       |
+| Text                    | For string values | `Hello`       |
 | Int                     | For integer values            |     12456    |
 | Identifier              | For 11 digit country identification number. Only for turkey right now. |  12345678901       |
 | Location                | For location value such as location sharing messages |  41.015137,28.979530  |
 | Email                   | For email values | myemail@yapaytech.com |
-| Phone                   | For phone type values |         |
-| Datetime                |             |         |
-| Time                    |             |         |
-| Date                    |             |         |
-| Array                   |             |         |
-| Horizontal Scroll Array |             |         |
-| Multi Array             |             |         |
+| Phone                   | For phone type values | 05xx322xxxx, +905xx322xxxx, 5xx322xxxx |
+| Datetime                | For Date and Time values | tomorrow at 3pm|
+| Time                    | For Time values| at 3pm |
+| Date                    | For Date Values| 3 day later, tomorrow |
+| Array                   | For Text array selections | |
+| Horizontal Scroll Array | For Horizontal Card selections |         |
+| Multi Array             | For Text array selections with abilty to select multiple answer |         |
 
 ## Output
+> ![intent-output-text](/images/intent-output-text.png)
+> ![intent-city](/images/intent-city.png)
+> ![intent-city-test](/images/intent-city-test.png)
+
+Output section is to define what will bot reply to user at the end of this intent. If you don't want to send a message at the end of this intent you can leave this section empty. There are couple of types of outputs like text, typing, image, video...
+
+|             Type | Description                                                           |
+|-----------------:|-----------------------------------------------------------------------|
+|             Text | Plain text message type.                                              |
+|           Typing | Sending typing... message and wait x sec before sending next message. |
+|            Array | Send a text message with a array of buttons.                          |
+| Horizontal Array | Send a generic-template type message with cards.                      |
+|            Image | Send a image.                                                         |
+|            Video | Send a video                                                          |
+|           Custom | Send a custom formatted text. (for custom api and endpoint usage).    |
+
+You can create more than one output for the same intent. To do so just click the `CREATE NEW OUTPUT` button.
 
 
+To use variables in your intent you can use `{<key>}`. For example if our paramater name is city. We can get city name in output like this `Weather status for {city} is sunny`. If you want to key-extra values you can chain with `.` like a normal json object. For example in our `sys.city` entity we have plate code for each city of Turkey in `code` keyword. We can use it like this `{city.code} is the plate number of {city} city.`.
+
+Or if you want to print something from `GET` or `POST` operation you can use `return` variable name like `{return.name}`.
 
 ## Operation
-
-
+Documentation coming soon...
 
 ## Forward
-
-
-
-## Settings
+Documentation coming soon...
