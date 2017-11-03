@@ -118,6 +118,10 @@ body {
     text-transform: uppercase;
   }
 
+  img {
+    max-width: 100%;
+  }
+
   aside {
     padding: 1em;
     border: 1px solid $print-color-light;

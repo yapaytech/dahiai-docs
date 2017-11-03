@@ -98,7 +98,46 @@ To use variables in your intent you can use `{<key>}`. For example if our parama
 Or if you want to print something from `GET` or `POST` operation you can use `return` variable name like `{return.name}`.
 
 ## Operation
-Documentation coming soon...
+> ![operation get](/images/ope-get.png)
+Try Get Screen
+![operation get try](/images/ope-get-try.png)
+Json Picker Button
+![operation json picker](/images/ope-get-picker.png)
+Json Picker Screen
+![operation json picker screen](/images/ope-get-picker-screen.png)
+How to use in output section
+![operation output](/images/ope-get-output.png)
+Demo test for this intent
+![operation chat](/images/ope-get-chat.png)
+
+Operation is a way to trigger an external resource event or save to cache. There are two types of operation. These are as follow...
+
+|         Type | Description                        |
+|-------------:|------------------------------------|
+| Call Service | Get or Post web request operation  |
+|        Cache | Save to cache a variable operation |
+
+### Call Service
+
+Call Service is a way to interact with external resources or apis. There are two types of Call Service currently available.
+
+| Type | Description       |
+|-----:|-------------------|
+|  GET | GET Http request  |
+| POST | POST Http request |
+
+In these operation types you can use following options
+
+|    Type | Description                                                                                                                                                | Required |
+|--------:|------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+|     Uri | Http request url. Can use our variables here like `http://jsonplaceholder.typicode.com/posts/{id}` | Yes      |
+| Headers | Json object as string to use as header. Example: `{"content-type":"application/json"}`                                                                     | No       |
+| Data    | Json object as string to use as post body. Example: `{"username":"test"}`. You can also use our variable printing markup here like `{"username":"{name}"}` | No       |
+| Try Get | A way to test your endpoint if it's working with our system                                                                                                | No       |
+
+In Try Get screen you can check if your endpoint is working correctly with our system. And save as example data to used in json-picker section. Json picker is a variable generator with gui. You can click the `+` button at the right of the text output to access to json-picker. After that you'll see a screen with mock data from your last try get.
+
+
 
 ## Forward
 Documentation coming soon...
