@@ -239,12 +239,6 @@
                   <li>
                     <a href="#bot-intents" class="toc-h2 toc-link" data-title="Bot Intents">Bot Intents</a>
                   </li>
-                  <li>
-                    <a href="#creation" class="toc-h2 toc-link" data-title="Creation">Creation</a>
-                  </li>
-                  <li>
-                    <a href="#settings" class="toc-h2 toc-link" data-title="Settings">Settings</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -268,14 +262,17 @@
                   <li>
                     <a href="#forward" class="toc-h2 toc-link" data-title="Forward">Forward</a>
                   </li>
-                  <li>
-                    <a href="#settings-2" class="toc-h2 toc-link" data-title="Settings">Settings</a>
-                  </li>
               </ul>
           </li>
           <li>
             <a href="#entity" class="toc-h1 toc-link" data-title="Entity">Entity</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#add-entity" class="toc-h2 toc-link" data-title="Add Entity">Add Entity</a>
+                  </li>
+                  <li>
+                    <a href="#edit-entity" class="toc-h2 toc-link" data-title="Edit Entity">Edit Entity</a>
+                  </li>
                   <li>
                     <a href="#types" class="toc-h2 toc-link" data-title="Types">Types</a>
                   </li>
@@ -301,29 +298,6 @@
                   </li>
                   <li>
                     <a href="#live-analytics" class="toc-h2 toc-link" data-title="Live Analytics">Live Analytics</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#extras" class="toc-h1 toc-link" data-title="Extras">Extras</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
-                  </li>
-                  <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
                   </li>
               </ul>
           </li>
@@ -391,7 +365,7 @@ If you want to upgrade your account to premium tier you can contact us from <a c
 <p>This is where we can add logic to our bot. Every intent is responsible for a job. Some to detect user inputs and response, some to create more complex logic to improve user engagement.</p>
 
 <p>For more information <a href="#intent">check out intent documentation section</a></p>
-<h2 id='creation'>Creation</h2><h2 id='settings'>Settings</h2><h1 id='intent'>Intent</h1><h2 id='how-to-create-intent'>How to Create Intent?</h2><h3 id='basic-intent-hello-world'>Basic Intent - Hello World</h3>
+<h1 id='intent'>Intent</h1><h2 id='how-to-create-intent'>How to Create Intent?</h2><h3 id='basic-intent-hello-world'>Basic Intent - Hello World</h3>
 <blockquote>
 <p>Hello World!
 <img src="images/intent_2.png" alt="alt text" /></p>
@@ -474,7 +448,7 @@ In anywhere in the intent you can call your variable with {$myVariableName}. </p
 <tr>
 <td style="text-align: center">Text</td>
 <td>For string values</td>
-<td>&quot;Hello&quot;</td>
+<td><code>Hello</code></td>
 </tr>
 <tr>
 <td style="text-align: center">Int</td>
@@ -499,40 +473,242 @@ In anywhere in the intent you can call your variable with {$myVariableName}. </p
 <tr>
 <td style="text-align: center">Phone</td>
 <td>For phone type values</td>
-<td></td>
+<td>05xx322xxxx, +905xx322xxxx, 5xx322xxxx</td>
 </tr>
 <tr>
 <td style="text-align: center">Datetime</td>
-<td></td>
-<td></td>
+<td>For Date and Time values</td>
+<td>tomorrow at 3pm</td>
 </tr>
 <tr>
 <td style="text-align: center">Time</td>
-<td></td>
-<td></td>
+<td>For Time values</td>
+<td>at 3pm</td>
 </tr>
 <tr>
 <td style="text-align: center">Date</td>
-<td></td>
-<td></td>
+<td>For Date Values</td>
+<td>3 day later, tomorrow</td>
 </tr>
 <tr>
 <td style="text-align: center">Array</td>
-<td></td>
+<td>For Text array selections</td>
 <td></td>
 </tr>
 <tr>
 <td style="text-align: center">Horizontal Scroll Array</td>
-<td></td>
+<td>For Horizontal Card selections</td>
 <td></td>
 </tr>
 <tr>
 <td style="text-align: center">Multi Array</td>
-<td></td>
+<td>For Text array selections with abilty to select multiple answer</td>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='output'>Output</h2><h2 id='operation'>Operation</h2><h2 id='forward'>Forward</h2><h2 id='settings-2'>Settings</h2><h1 id='entity'>Entity</h1><h2 id='types'>Types</h2><h3 id='array'>Array</h3><h3 id='horizontal'>Horizontal</h3><h1 id='live'>Live</h1>
+<h2 id='output'>Output</h2>
+<blockquote>
+<p><img src="images/intent-output-text.png" alt="intent-output-text" />
+<img src="images/intent-city.png" alt="intent-city" />
+<img src="images/intent-city-test.png" alt="intent-city-test" /></p>
+</blockquote>
+
+<p>Output section is to define what will bot reply to user at the end of this intent. If you don&#39;t want to send a message at the end of this intent you can leave this section empty. There are couple of types of outputs like text, typing, image, video...</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">Text</td>
+<td>Plain text message type.</td>
+</tr>
+<tr>
+<td style="text-align: right">Typing</td>
+<td>Sending typing... message and wait x sec before sending next message.</td>
+</tr>
+<tr>
+<td style="text-align: right">Array</td>
+<td>Send a text message with a array of buttons.</td>
+</tr>
+<tr>
+<td style="text-align: right">Horizontal Array</td>
+<td>Send a generic-template type message with cards.</td>
+</tr>
+<tr>
+<td style="text-align: right">Image</td>
+<td>Send a image.</td>
+</tr>
+<tr>
+<td style="text-align: right">Video</td>
+<td>Send a video</td>
+</tr>
+<tr>
+<td style="text-align: right">Custom</td>
+<td>Send a custom formatted text. (for custom api and endpoint usage).</td>
+</tr>
+</tbody></table>
+
+<p>You can create more than one output for the same intent. To do so just click the <code>CREATE NEW OUTPUT</code> button.</p>
+
+<p>To use variables in your intent you can use <code>{&lt;key&gt;}</code>. For example if our paramater name is city. We can get city name in output like this <code>Weather status for {city} is sunny</code>. If you want to key-extra values you can chain with <code>.</code> like a normal json object. For example in our <code>sys.city</code> entity we have plate code for each city of Turkey in <code>code</code> keyword. We can use it like this <code>{city.code} is the plate number of {city} city.</code>.</p>
+
+<p>Or if you want to print something from <code>GET</code> or <code>POST</code> operation you can use <code>return</code> variable name like <code>{return.name}</code>.</p>
+<h2 id='operation'>Operation</h2>
+<p>Documentation coming soon...</p>
+<h2 id='forward'>Forward</h2>
+<p>Documentation coming soon...</p>
+<h1 id='entity'>Entity</h1>
+<blockquote>
+<p><img src="images/entity-list.png" alt="entity-list" /></p>
+</blockquote>
+
+<p>Entity is a list of object that our bot can use to recognize data or ask question.</p>
+
+<p>For example; if we want to ask user which is their favaurite color. We can fill an <code>colors</code> named entity with all known colors and link it to the question with using intent paramaters.</p>
+
+<p>There are currently two types of entity. Array and Horizontal, array is for any data list and horizontal for facebook generic-template outputs.</p>
+<h2 id='add-entity'>Add Entity</h2>
+<blockquote>
+<p><img src="images/entity-add.png" alt="entity-list" /></p>
+</blockquote>
+
+<p>To add a new entity follow these steps:</p>
+
+<ol>
+<li>click to <code>ADD</code> button at the right top corner in entity list page.</li>
+<li>Type entity name at left top corner of section.</li>
+<li>Select which type of entity you want to create array(default) or horizontal. You can&#39;t change this after creating an entity.</li>
+<li>Type your data.</li>
+<li>Click <code>SAVE</code> button to save it.</li>
+</ol>
+<h2 id='edit-entity'>Edit Entity</h2>
+<blockquote>
+<p><img src="images/entity-colors.png" alt="entity-list" /></p>
+</blockquote>
+
+<p>To edit an entity click it&#39;s name, then you can type any new text in to <code>Define Item</code> section and press enter to add it to the list.</p>
+
+<p>In this screen you can also modify any item&#39;s name, sysnoms, keys or delete them if you want.</p>
+
+<p>To save click <code>SAVE</code> button at right top corner.</p>
+<h2 id='types'>Types</h2>
+<p>There are currently two types of entity. Array and Horizontal, array is for any data list and horizontal for facebook generic-template outputs.</p>
+<h3 id='array'>Array</h3>
+<blockquote>
+<p><img src="images/entity-colors.png" alt="entity-list" /></p>
+</blockquote>
+
+<p>This is a text based list entity type. Can be used for <code>array</code>, <code>text</code> and <code>multi-array</code> type paramaters.</p>
+
+<p>To add a new element type Reference Value that you want to add in <code>Define Item</code> section and press enter.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Key</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">Reference Value</td>
+<td>Display text value</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right">Synonyms</td>
+<td>Equivalents of value to detech for this element.</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">Default</td>
+<td>is default repiresantation of entity</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">Keys</td>
+<td>key-value pairs for this entity, can be used by chat-bot.</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h3 id='horizontal'>Horizontal</h3>
+<blockquote>
+<p><img src="images/entity-card.png" alt="entity-card" /></p>
+</blockquote>
+
+<p>This is a horizontal card entity. Can be used for outputing generic-template messages.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Key</th>
+<th>Description</th>
+<th>Required</th>
+<th>Limits</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">Title</td>
+<td>Title value for this card item.</td>
+<td>Yes</td>
+<td>0-80 Character</td>
+</tr>
+<tr>
+<td style="text-align: right">Image_url</td>
+<td>Image url for this card item.</td>
+<td>No</td>
+<td>Must be a valid image url.</td>
+</tr>
+<tr>
+<td style="text-align: right">Subtitle</td>
+<td>Subtitle for this card item.</td>
+<td>No</td>
+<td>0-80 Character</td>
+</tr>
+<tr>
+<td style="text-align: right">Item_url</td>
+<td>Url to open if this card is clicked.</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">Extra</td>
+<td>key-value pairs to define values that can be used by chat-bot</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align: right">Buttons</td>
+<td>Interactive buttons (open web wage, trigger intents, etc.)</td>
+<td>No</td>
+<td>Maximum 3 button</td>
+</tr>
+</tbody></table>
+<h4 id='buttons'>Buttons</h4>
+<blockquote>
+<p><img src="images/hor-but-list.png" alt="horizontal-button-list" />
+<img src="images/hor-but-web.png" alt="horizontal-button-web" />
+<img src="images/hor-but-int.png" alt="horizontal-button-intent" /></p>
+</blockquote>
+
+<p>There is two types of buttons here. One is to open web url, second one is to trigger an intent. You can click to <code>Add new Button</code> button and configure what you want to add. </p>
+
+<p>There are 3 things to chose when adding button. Button text, button type (web_url,postback) and value of the button. For web_url value must be web url. For postback you can chose a intent from combo-box. And click tick button to add button.</p>
+
+<aside class="notice">
+Don't forget to click save before exiting to save.
+</aside>
+
+<p>Some extra information:</p>
+
+<ul>
+<li>You can reorder buttons with holding hook at the left of the buttons and drag them.</li>
+<li>To edit buttons click over them.</li>
+<li>To delete button click red trash button.</li>
+<li>To change type of button click the url and arrow button at the center of button edit view. Arrow button represent payload type. Url button for web_url type.</li>
+</ul>
+<h1 id='live'>Live</h1>
 <p>Live-Chat can be described as a messaging system. <a href="http://dahi.ai/live">http://dahi.ai/live</a></p>
 
 <p>Dahi.ai composed of two system first is chat bots. Second is messaging system aka. Live-chat. Live-chat is most easy way to provide a user integration system without any hurdle.</p>
@@ -767,158 +943,6 @@ If you want to join the chat and answer instead of chat-bot you can click the &q
 </blockquote>
 
 <p>Here you can find some usefull information about your live-chat bot and usage information. Currently this section is in development.</p>
-<h1 id='introduction'>Introduction</h1><h1 id='extras'>Extras</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"test"</span><span class="p">:</span><span class="s2">"12"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"alone"</span><span class="p">:</span><span class="s2">"trust"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<blockquote>
-<p><img src="images/logo.png" alt="alt text" />
-Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
 
       </div>
       <div class="dark-box">
