@@ -301,6 +301,9 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#api" class="toc-h1 toc-link" data-title="Api">Api</a>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><u>Usefull Links</u></li>
@@ -1024,6 +1027,61 @@ If you want to join the chat and answer instead of chat-bot you can click the &q
 </blockquote>
 
 <p>Here you can find some usefull information about your live-chat bot and usage information. Currently this section is in development.</p>
+<h1 id='api'>Api</h1>
+<blockquote>
+<p>To use our endpoint you need to use this code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://api.dahi.ai/dahi/bot/tkn/59fff527e4b0cf33abf0c959 <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'x-requested-with: XMLHttpRequest'</span> <span class="se">\</span>
+  -d <span class="s1">'{"recipientId":"user_id" , "message":{ "text":"yemek"}}'</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code>user_id</code> with a user_id and <code>59fff527e4b0cf33abf0c959</code> with your bot id.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">#</span><span class="w"> </span><span class="err">request</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">example</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"recipientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_id"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span><span class="err">#</span><span class="w"> </span><span class="err">response</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">example</span><span class="p">,</span><span class="w"> </span><span class="err">there</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">information</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">removed</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">example.</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"array"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Message</span><span class="w"> </span><span class="err">Type</span><span class="w">
+      </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Buttons</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">array</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">message</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dışarıda Yemek İstiyorum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"kisa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dışarıda"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59fff930e4b0cf33abf0c984_16"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Burada Yemek İstiyorum"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"extra"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"59fff930e4b0cf33abf0c984_17"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nerede Yemek İstersiniz?"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Message</span><span class="w"> </span><span class="err">Text</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"conversation_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"conversation id"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You can use our dahi.ai chat-bot platform with our endpoint.</p>
+
+<p>You can learn your bot&#39;s bot_id (bot token) from bot settings page.</p>
+
+<p><code>http://api.dahi.ai/dahi/bot/tkn/{bot_id}</code></p>
+
+<p>From response <code>result.messages</code> array is the response messages array.</p>
 
       </div>
       <div class="dark-box">
