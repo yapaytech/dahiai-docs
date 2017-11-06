@@ -16,6 +16,7 @@ includes:
   - intent
   - entity
   - live
+  - api
 #  - errors
 
 search: true

@@ -1,4 +1,3 @@
-
 # Bot
 >![dahi-bot](/images/dahi-bot.png)
 
