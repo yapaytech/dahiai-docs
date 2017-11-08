@@ -72,8 +72,6 @@ We're adding more helpers and features according to the customers needs. If you 
 Paramater system currently can be used in 3 section `__if` helper, `uri` string for template and `string` values in schema.
 
 ### URI
-First of all let's say we want to pass a paramater to uri from post body we use to call template endpoint or get query paramaters to call template endpoint. At this point of system (creation of url) you have access to static data from template object, and body object. More info about body object can be found in Usage Section.
-
 ```shell
 curl -X GET \
   'https://template.maytap.me/service/59f71e0de0aadb6b3ec6256c?data.id=2'
@@ -85,6 +83,8 @@ curl -X POST \
   -H 'content-type: application/json' \
   -d '{"data":{"id":1}}'
 ```
+
+First of all let's say we want to pass a paramater to uri from post body we use to call template endpoint or get query paramaters to call template endpoint. At this point of system (creation of url) you have access to static data from template object, and body object. More info about body object can be found in Usage Section.
 
 For example let's say our uri is like this `https://jsonplaceholder.typicode.com/posts/{{id}}`.
 Here it will try to access data.id value from body. So we want to send id paramater in id here. As default `{{key}}` would try to read 'key' data from request.body.data object. If you want to access to static data from your template you can use `{{#data.x}}` shown in second schema.
