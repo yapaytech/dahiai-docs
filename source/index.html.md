@@ -17,6 +17,7 @@ includes:
   - entity
   - live
   - api
+  - template
 #  - errors
 
 search: true
