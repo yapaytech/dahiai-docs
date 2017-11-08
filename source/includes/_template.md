@@ -69,7 +69,7 @@ In this example there are two schemas first one has `__each,__type,__limit` help
 We're adding more helpers and features according to the customers needs. If you think a helper would improve or help customers to create their templates easly you can contact us through `info@yapaytech.com`. Your suggestion must not break old shemas.
 
 ## Paramater System
-Paramater system currently can be used in 3 section `__if` helper, `uri` string for template and `string` values in schema.
+Paramater system currently can be used in 3 section `__if` helper, `uri` string for template and `string` values in schema. Check helpers section for more information for __if helper.
 
 ### URI
 ```shell
@@ -131,8 +131,8 @@ Here `{{key}}` would try to read from cursor. Cursor is most of the time would p
 
 other then that you can access to scope with using # tag. If you want to access to request body that you used to call template you can use `{{#body.x}}` like if i use `https://template.maytap.me/service/59f71e0de0aadb6b3ec6256c?s=1&data.y=12` url to call my template (Look at Schema object used in this example) in this call our body object would be `{s:1,data:{y:12}}` here s:1 means use schemas[1] to create our output. our output text is `{{#body.data.y}} {{#data.x}}` (from schema[1]) and created output shown at right section. Here you can see #body.data.y and #data.x used. As you can guess you can access to body with #body tag and #data is used to access to template.data object. In this schema it's just creating a simple message combining a static data stored inside template.data object and a variable from get url call.
 
-### __if helper
 
 ## Helpers
+### __if helper
 
 ## Usage
