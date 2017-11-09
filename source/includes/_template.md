@@ -87,7 +87,7 @@ curl -X POST \
 First of all let's say we want to pass a paramater to uri from post body we use to call template endpoint or get query paramaters to call template endpoint. At this point of system (creation of url) you have access to static data from template object, and body object. More info about body object can be found in Usage Section.
 
 For example let's say our uri is like this `https://jsonplaceholder.typicode.com/posts/{{id}}`.
-Here it will try to access data.id value from body. So we want to send id paramater in id here. As default `{{key}}` would try to read 'key' data from request.body.data object. If you want to access to static data from your template you can use `{{#data.x}}` shown in second schema.
+Here it will try to access data.id value from body. So we want to send id paramater in data here(As shown in examples at right section). As default `{{key}}` would try to read 'key' data from request.body.data object. If you want to access to static data from your template you can use `{{#data.x}}` shown in second schema.
 
 ### In string values
 
@@ -131,8 +131,57 @@ Here `{{key}}` would try to read from cursor. Cursor is most of the time would p
 
 other then that you can access to scope with using # tag. If you want to access to request body that you used to call template you can use `{{#body.x}}` like if i use `https://template.maytap.me/service/59f71e0de0aadb6b3ec6256c?s=1&data.y=12` url to call my template (Look at Schema object used in this example) in this call our body object would be `{s:1,data:{y:12}}` here s:1 means use schemas[1] to create our output. our output text is `{{#body.data.y}} {{#data.x}}` (from schema[1]) and created output shown at right section. Here you can see #body.data.y and #data.x used. As you can guess you can access to body with #body tag and #data is used to access to template.data object. In this schema it's just creating a simple message combining a static data stored inside template.data object and a variable from get url call.
 
+Let's say your api response is `{"arr":[1,2,3,4]}` and you want to print second element from arr array. To do so you can use `{{arr[1]}}` to print it.
+
+Another example with `{"test":{"text":"hello"}}` response data to print hello world we can use `{{test.text}}, World!` complete shema would look like this. `{{__type:"custom",type:"text",text:"{{test.text}}, World!"}}`. Here __type would wrap our object inside `{multi_message:true,messages:[<here our object would be put>]}` so dahi.ai can understand that this template a message printing operation. type:"text" is defines what type of message is this. and text would be what will be sended to the user.s
+
 
 ## Helpers
+Helpers are there to make things easier or add some features that you can do with basic features.
+
 ### __if helper
+```json
+// shema examples
+// get every finished work
+{
+  "__each":"",
+  "__type": "custom",
+  "__if": "{{completed}}",
+  "__then": {
+    "type": "text",
+    "text": "Finished Work - {{title}}!"
+  }
+}
+
+// get every work and tag
+{
+  "__each":"",
+  "__type": "custom",
+  "__if": "{{completed}}",
+  "__then": {
+    "type": "text",
+    "text": "Finished Work - {{title}}!"
+  },
+  "__else": {
+    "type": "text",
+    "text": "Not Finished Work - {{title}}!"
+  }
+}
+```
+
+__if helper uses two more paramaters. They are __then and __else. __if helper takes a string value that filled with javascript condition code like `true`, `'{{finished}}==='yes'`, `{{id}} > 1`, `'{{name}}'.length > 20` , etc. As you can see you can use our Paramater System inside this string. If this value is true it'll use __then's value as generator, if not true it'll use __else's value as generator. If it looks for __then's or __else's value and can't find one it'll generate null. __then and __else value can be anything that is valid as 
+
+For example; Let's create a template that uses `https://jsonplaceholder.typicode.com/todos` api. We want to print messages according to the todo's `completed` status. If it's completed we want to add `Finished` tag to start of items text data. In example we created there are two schemas. First one returns only the ones that has `completed:true`. Second one prints every one but adds `Finished Work` or `Not Finished Work` to start of the text according to the `completed` value.
+
+### __each helper
+This is a foreach operation.
+
+
+
+### __limit helper
+
+
+### __type helper
+
 
 ## Usage
