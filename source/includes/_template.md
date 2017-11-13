@@ -174,14 +174,114 @@ __if helper uses two more paramaters. They are __then and __else. __if helper ta
 For example; Let's create a template that uses `https://jsonplaceholder.typicode.com/todos` api. We want to print messages according to the todo's `completed` status. If it's completed we want to add `Finished` tag to start of items text data. In example we created there are two schemas. First one returns only the ones that has `completed:true`. Second one prints every one but adds `Finished Work` or `Not Finished Work` to start of the text according to the `completed` value.
 
 ### __each helper
-This is a foreach operation.
+This is a foreach operation. It's value should point to a json array. If array is root of the json response `__each`'s value should be `""`.
 
-
+For example let assume our request from external service is `{test:[{key:1},{key:2}]}` and our schema is `{__each:"test",number:"{{key}}"}` would generate `[{number:"1"},{number:"2"}]`.
 
 ### __limit helper
-
+This is a helper for __each helper to put a limit to how much item would you like to return maximum. Value must be a integer.
 
 ### __type helper
+```json
+// Example horizontal type Schema
+{
+  "__type": "horizontal",
+  "__limit": 2,
+  "title": "{{title}}",
+  "subtitle": "subtitle {{title}}",
+  "image_url": "",
+  "buttons": [],
+  "__each": ""
+}
 
+// Example horizontal type Output From Schema
+{
+  "multi_message": true,
+  "messages": [{
+    "type": "horizontalscrollarray",
+    "values": [{
+        "image_url": "",
+        "buttons": [],
+        "subtitle": "subtitle delectus aut autem",
+        "title": "delectus aut autem"
+      },
+      {
+        "image_url": "",
+        "buttons": [],
+        "subtitle": "subtitle quis ut nam facilis et officia qui",
+        "title": "quis ut nam facilis et officia qui"
+      }
+    ]
+  }]
+}
+
+
+```
+This a wrapper helper. Value generated from this object would be wrapped inside __type's wrapper. There are currently 2 wrappers `custom` and `horizontal`.
+
+`custom` wrapper would wrap output object inside a dahi.ai chat-bot send message operation format. `{multi_message:true,messages:[<here our object would be put>]}`. If the object that will be wrapped is array it would append to messages array. The object inside messages array must be a dahi.ai message formatted object like `{type:"text",text:"Hello, World!"}`.
+
+`horizontal` wrapper would wrap output object inside a dahi.ai chat-bot horizontal message type. Look at example for more information.
 
 ## Usage
+```json
+// Template
+{
+  "uri":"https://jsonplaceholder.typicode.com/posts/{{id}}",
+  "method":"GET"
+}
+
+// Call url https://template.maytap.me/service/5a09415f91be0e2aef74b4d3?data.id=1&raw=true
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+
+// Call url https://template.maytap.me/service/5a09415f91be0e2aef74b4d3?data.id=2&raw=true
+{
+  "userId": 1,
+  "id": 2,
+  "title": "qui est esse",
+  "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+}
+
+// Template
+{
+  "uri":"https://jsonplaceholder.typicode.com/posts/{{id}}",
+  "method":"GET"
+}
+
+// Post to url https://template.maytap.me/service/5a09415f91be0e2aef74b4d3
+{
+  "data":{
+    "id":1
+  },
+  "raw":true
+}
+
+// Response
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+```
+
+What template api looks when a request made is id of your template, index of which schema you want to use `s:0 default`. Data to use in uri creation or to post to external server. Should response generated with dahi schema `dahi:false default`. 
+
+If we combine these we'll get a object like this: `{s:0,data:{},id:"5a0407686090c8750ae9baa9",dahi:false}`. For more example look at right section.
+
+### How to get raw response to debug
+If you add ?raw=true to your url or add raw:true to your request json if you are using post method. With this you can debug what our system recieves before generation a output data from external api that defined from uri. example url: `https://template.maytap.me/service/5a0407686090c8750ae9baa9?raw=true`.
+
+### With GET Call
+In this method `(When template.method="GET")` data would be used to generate uri. Let's say our uri in template is `https://jsonplaceholder.typicode.com/posts/{{id}}`. It needs id to generate this uri so need to pass id value inside data object so our call uri needs to be `https://template.maytap.me/service/<id>?data.id=1`. This uri would generate `{s:0,data:{id:1},dahi:false}` object and send it to template.
+
+### With POST Call
+It's same with get method but in this we're sending all the information in request body.
+
+### Template's POST Method
+In previous sections we have examples that uses method `GET`. For template that uses `POST` there is just a small difference. data from `{s:0,data:{},dahi:false}` would be used as request body to call your uri that defined in template.
