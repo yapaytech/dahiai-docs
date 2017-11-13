@@ -304,6 +304,29 @@
           <li>
             <a href="#api" class="toc-h1 toc-link" data-title="Api">Api</a>
           </li>
+          <li>
+            <a href="#template" class="toc-h1 toc-link" data-title="Template">Template</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#what-is-template" class="toc-h2 toc-link" data-title="What is Template">What is Template</a>
+                  </li>
+                  <li>
+                    <a href="#main-paramaters" class="toc-h2 toc-link" data-title="Main Paramaters">Main Paramaters</a>
+                  </li>
+                  <li>
+                    <a href="#schemas" class="toc-h2 toc-link" data-title="Schemas">Schemas</a>
+                  </li>
+                  <li>
+                    <a href="#paramater-system" class="toc-h2 toc-link" data-title="Paramater System">Paramater System</a>
+                  </li>
+                  <li>
+                    <a href="#helpers" class="toc-h2 toc-link" data-title="Helpers">Helpers</a>
+                  </li>
+                  <li>
+                    <a href="#usage" class="toc-h2 toc-link" data-title="Usage">Usage</a>
+                  </li>
+              </ul>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><u>Usefull Links</u></li>
@@ -1082,6 +1105,306 @@ If you want to join the chat and answer instead of chat-bot you can click the &q
 <p><code>http://api.dahi.ai/dahi/bot/tkn/{bot_id}</code></p>
 
 <p>From response <code>result.messages</code> array is the response messages array.</p>
+<h1 id='template'>Template</h1><h2 id='what-is-template'>What is Template</h2>
+<blockquote>
+<p><img src="images/template-list.PNG" alt="template-list" />
+<img src="images/template-edit.PNG" alt="template-edit" /></p>
+</blockquote>
+
+<p>Template is a way to create message data that supported by dahi.ai. If you want to create a horizontal scroll array message from your REST api data, you can use template feature to create a middleware REST api.</p>
+
+<p>When you created a template if you revisit it&#39;s edit page you will see a url like <code>https://template.maytap.me/service/59f71e0de0aadb6b3ec6256c</code> that you can use to access to this template from any service. You&#39;ll get a unique id for each one of your templates. This REST service can be called with <code>GET</code> and <code>POST</code> methods. You can find more information in <code>USAGE</code> section</p>
+
+<p>Template system is new and still under development and curently is <code>BETA</code> stage. When we update this system your old schemes might break.</p>
+
+<p>Also our variable access system in template is different from dahi.ai&#39;s chat-bot system.</p>
+<h2 id='main-paramaters'>Main Paramaters</h2>
+<p>Here are some descriptions of which paramater means what.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Key</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">name</td>
+<td>Label for template, used to identify your templates from each other</td>
+<td>No Default</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">uri</td>
+<td>If your template needs to call a external <code>REST</code> service to extract data from you need to define it here.</td>
+<td>No Default</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">method</td>
+<td>Which method used to call your uri call. <code>GET</code> or <code>POST</code></td>
+<td>GET</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">dahi</td>
+<td>Which shema</td>
+<td>0</td>
+<td>Number</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">data</td>
+<td>Static data that can be used by this template with <code>{{#data.variableName}}</code></td>
+<td>{}</td>
+<td>Object</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">schemas</td>
+<td>Schemas array. Look at shemas section for more information</td>
+<td>[]</td>
+<td>Array</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<p>For uri you can use your static data or post data values. For more information check Paramater System Section</p>
+<h2 id='schemas'>Schemas</h2>
+<blockquote>
+<p><img src="images/template-schema.PNG" alt="template-schema" /></p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w"> </span><span class="err">examples</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">schema</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">59</span><span class="err">f</span><span class="mi">71</span><span class="err">e</span><span class="mi">0</span><span class="err">de</span><span class="mi">0</span><span class="err">aadb</span><span class="mi">6</span><span class="err">b</span><span class="mi">3</span><span class="err">ec</span><span class="mi">6256</span><span class="err">c</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"multi_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sunt aut facere repellat provident occaecati excepturi optio reprehenderit is where"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qui est esse is where"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ea molestias quasi exercitationem repellat qui ipsa sit aut is where"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eum et est occaecati is where"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">GET</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">59</span><span class="err">f</span><span class="mi">71</span><span class="err">e</span><span class="mi">0</span><span class="err">de</span><span class="mi">0</span><span class="err">aadb</span><span class="mi">6</span><span class="err">b</span><span class="mi">3</span><span class="err">ec</span><span class="mi">6256</span><span class="err">c?s=</span><span class="mi">1</span><span class="err">&amp;data.y=</span><span class="mi">12</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"multi_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12 15"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Shema is a mapping style to used to create a output data. Your uri, method, data, REST Response from your uri, post body, query paramaters etc. can be used here. There are some keywords helper can be used here other than that you can also use Paramater System to import data to string values. Chat-bot system uses a specific message recognition from Call Service Operation if response from a Call Service is json and has <code>{multi_message:true,messages:[]}</code> Keyword it&#39;ll automaticly try to look messages array to and create messages from this array to send to the user. And objects in this array must be message formatted objects. For text message it can be like this <code>{type:&quot;text&quot;,text:&quot;Hello, World!&quot;}</code>. This will create a <code>Hello, World!</code> message and send it as a response to the user. Because it&#39;s an array you can send multiple messages in one request call.</p>
+
+<p>In this example there are two schemas first one has <code>__each,__type,__limit</code> helpers and <code>type,text</code> key-value pairs. You can find more information in Helpers Section and how <code>{{}}</code> works can be found in Paramater System.</p>
+
+<p>We&#39;re adding more helpers and features according to the customers needs. If you think a helper would improve or help customers to create their templates easly you can contact us through <code>info@yapaytech.com</code>. Your suggestion must not break old shemas.</p>
+<h2 id='paramater-system'>Paramater System</h2>
+<p>Paramater system currently can be used in 3 section <code>__if</code> helper, <code>uri</code> string for template and <code>string</code> values in schema. Check helpers section for more information for __if helper.</p>
+<h3 id='uri'>URI</h3><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  <span class="s1">'https://template.maytap.me/service/59f71e0de0aadb6b3ec6256c?data.id=2'</span>
+
+or
+
+curl -X POST <span class="se">\</span>
+  https://template.maytap.me/service/59f71e0de0aadb6b3ec6256c <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -d <span class="s1">'{"data":{"id":1}}'</span>
+</code></pre>
+<p>First of all let&#39;s say we want to pass a paramater to uri from post body we use to call template endpoint or get query paramaters to call template endpoint. At this point of system (creation of url) you have access to static data from template object, and body object. More info about body object can be found in Usage Section.</p>
+
+<p>For example let&#39;s say our uri is like this <code>https://jsonplaceholder.typicode.com/posts/{{id}}</code>.
+Here it will try to access data.id value from body. So we want to send id paramater in data here(As shown in examples at right section). As default <code>{{key}}</code> would try to read &#39;key&#39; data from request.body.data object. If you want to access to static data from your template you can use <code>{{#data.x}}</code> shown in second schema.</p>
+<h3 id='in-string-values'>In string values</h3><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">url</span><span class="p">:</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">59</span><span class="err">f</span><span class="mi">71</span><span class="err">e</span><span class="mi">0</span><span class="err">de</span><span class="mi">0</span><span class="err">aadb</span><span class="mi">6</span><span class="err">b</span><span class="mi">3</span><span class="err">ec</span><span class="mi">6256</span><span class="err">c?s=</span><span class="mi">1</span><span class="err">&amp;data.y=</span><span class="mi">12</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">object</span><span class="w"> </span><span class="err">used</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">example</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://jsonplaceholder.typicode.com/posts"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"dahi"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"x"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"schemas"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"__each"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"__limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{title}} is where"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{#body.data.y}} {{#data.x}}"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">example</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"multi_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12 15"</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Here <code>{{key}}</code> would try to read from cursor. Cursor is most of the time would point at response recieved from uri request. But if it&#39;s inside an <code>__each</code> helper object it would point at array&#39;s object that currently used to create this iteration. More info <code>__each</code> helper section.</p>
+
+<p>other then that you can access to scope with using # tag. If you want to access to request body that you used to call template you can use <code>{{#body.x}}</code> like if i use <code>https://template.maytap.me/service/59f71e0de0aadb6b3ec6256c?s=1&amp;data.y=12</code> url to call my template (Look at Schema object used in this example) in this call our body object would be <code>{s:1,data:{y:12}}</code> here s:1 means use schemas[1] to create our output. our output text is <code>{{#body.data.y}} {{#data.x}}</code> (from schema[1]) and created output shown at right section. Here you can see #body.data.y and #data.x used. As you can guess you can access to body with #body tag and #data is used to access to template.data object. In this schema it&#39;s just creating a simple message combining a static data stored inside template.data object and a variable from get url call.</p>
+
+<p>Let&#39;s say your api response is <code>{&quot;arr&quot;:[1,2,3,4]}</code> and you want to print second element from arr array. To do so you can use <code>{{arr[1]}}</code> to print it.</p>
+
+<p>Another example with <code>{&quot;test&quot;:{&quot;text&quot;:&quot;hello&quot;}}</code> response data to print hello world we can use <code>{{test.text}}, World!</code> complete shema would look like this. <code>{{__type:&quot;custom&quot;,type:&quot;text&quot;,text:&quot;{{test.text}}, World!&quot;}}</code>. Here __type would wrap our object inside <code>{multi_message:true,messages:[&lt;here our object would be put&gt;]}</code> so dahi.ai can understand that this template a message printing operation. type:&quot;text&quot; is defines what type of message is this. and text would be what will be sended to the user.s</p>
+<h2 id='helpers'>Helpers</h2>
+<p>Helpers are there to make things easier or add some features that you can do with basic features.</p>
+<h3 id='__if-helper'>__if helper</h3><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">shema</span><span class="w"> </span><span class="err">examples</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">every</span><span class="w"> </span><span class="err">finished</span><span class="w"> </span><span class="err">work</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__if"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{completed}}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__then"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finished Work - {{title}}!"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">every</span><span class="w"> </span><span class="err">work</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">tag</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__if"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{completed}}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__then"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finished Work - {{title}}!"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"__else"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Finished Work - {{title}}!"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>__if helper uses two more paramaters. They are __then and __else. __if helper takes a string value that filled with javascript condition code like <code>true</code>, <code>&#39;{{finished}}===&#39;yes&#39;</code>, <code>{{id}} &gt; 1</code>, <code>&#39;{{name}}&#39;.length &gt; 20</code> , etc. As you can see you can use our Paramater System inside this string. If this value is true it&#39;ll use __then&#39;s value as generator, if not true it&#39;ll use __else&#39;s value as generator. If it looks for __then&#39;s or __else&#39;s value and can&#39;t find one it&#39;ll generate null. __then and __else value can be anything that is valid as </p>
+
+<p>For example; Let&#39;s create a template that uses <code>https://jsonplaceholder.typicode.com/todos</code> api. We want to print messages according to the todo&#39;s <code>completed</code> status. If it&#39;s completed we want to add <code>Finished</code> tag to start of items text data. In example we created there are two schemas. First one returns only the ones that has <code>completed:true</code>. Second one prints every one but adds <code>Finished Work</code> or <code>Not Finished Work</code> to start of the text according to the <code>completed</code> value.</p>
+<h3 id='__each-helper'>__each helper</h3>
+<p>This is a foreach operation. It&#39;s value should point to a json array. If array is root of the json response <code>__each</code>&#39;s value should be <code>&quot;&quot;</code>.</p>
+
+<p>For example let assume our request from external service is <code>{test:[{key:1},{key:2}]}</code> and our schema is <code>{__each:&quot;test&quot;,number:&quot;{{key}}&quot;}</code> would generate <code>[{number:&quot;1&quot;},{number:&quot;2&quot;}]</code>.</p>
+<h3 id='__limit-helper'>__limit helper</h3>
+<p>This is a helper for __each helper to put a limit to how much item would you like to return maximum. Value must be a integer.</p>
+<h3 id='__type-helper'>__type helper</h3><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">horizontal</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">Schema</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"horizontal"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{title}}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subtitle {{title}}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"buttons"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"__each"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">horizontal</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">Output</span><span class="w"> </span><span class="err">From</span><span class="w"> </span><span class="err">Schema</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"multi_message"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"horizontalscrollarray"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"buttons"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subtitle delectus aut autem"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delectus aut autem"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"buttons"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"subtitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subtitle quis ut nam facilis et officia qui"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quis ut nam facilis et officia qui"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+<p>This a wrapper helper. Value generated from this object would be wrapped inside __type&#39;s wrapper. There are currently 2 wrappers <code>custom</code> and <code>horizontal</code>.</p>
+
+<p><code>custom</code> wrapper would wrap output object inside a dahi.ai chat-bot send message operation format. <code>{multi_message:true,messages:[&lt;here our object would be put&gt;]}</code>. If the object that will be wrapped is array it would append to messages array. The object inside messages array must be a dahi.ai message formatted object like <code>{type:&quot;text&quot;,text:&quot;Hello, World!&quot;}</code>.</p>
+
+<p><code>horizontal</code> wrapper would wrap output object inside a dahi.ai chat-bot horizontal message type. Look at example for more information.</p>
+<h2 id='usage'>Usage</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Template</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="s2">"https://jsonplaceholder.typicode.com/posts/{{id}}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="s2">"GET"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Call</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">5</span><span class="err">a</span><span class="mi">09415</span><span class="err">f</span><span class="mi">91</span><span class="err">be</span><span class="mi">0</span><span class="err">e</span><span class="mi">2</span><span class="err">aef</span><span class="mi">74</span><span class="err">b</span><span class="mi">4</span><span class="err">d</span><span class="mi">3</span><span class="err">?data.id=</span><span class="mi">1</span><span class="err">&amp;raw=</span><span class="kc">true</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sunt aut facere repellat provident occaecati excepturi optio reprehenderit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quia et suscipit</span><span class="se">\n</span><span class="s2">suscipit recusandae consequuntur expedita et cum</span><span class="se">\n</span><span class="s2">reprehenderit molestiae ut ut quas totam</span><span class="se">\n</span><span class="s2">nostrum rerum est autem sunt rem eveniet architecto"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Call</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">5</span><span class="err">a</span><span class="mi">09415</span><span class="err">f</span><span class="mi">91</span><span class="err">be</span><span class="mi">0</span><span class="err">e</span><span class="mi">2</span><span class="err">aef</span><span class="mi">74</span><span class="err">b</span><span class="mi">4</span><span class="err">d</span><span class="mi">3</span><span class="err">?data.id=</span><span class="mi">2</span><span class="err">&amp;raw=</span><span class="kc">true</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qui est esse"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"est rerum tempore vitae</span><span class="se">\n</span><span class="s2">sequi sint nihil reprehenderit dolor beatae ea dolores neque</span><span class="se">\n</span><span class="s2">fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis</span><span class="se">\n</span><span class="s2">qui aperiam non debitis possimus qui neque nisi nulla"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Template</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="s2">"https://jsonplaceholder.typicode.com/posts/{{id}}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="s2">"GET"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Post</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">5</span><span class="err">a</span><span class="mi">09415</span><span class="err">f</span><span class="mi">91</span><span class="err">be</span><span class="mi">0</span><span class="err">e</span><span class="mi">2</span><span class="err">aef</span><span class="mi">74</span><span class="err">b</span><span class="mi">4</span><span class="err">d</span><span class="mi">3</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"raw"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sunt aut facere repellat provident occaecati excepturi optio reprehenderit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quia et suscipit</span><span class="se">\n</span><span class="s2">suscipit recusandae consequuntur expedita et cum</span><span class="se">\n</span><span class="s2">reprehenderit molestiae ut ut quas totam</span><span class="se">\n</span><span class="s2">nostrum rerum est autem sunt rem eveniet architecto"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>What template api looks when a request made is id of your template, index of which schema you want to use <code>s:0 default</code>. Data to use in uri creation or to post to external server. Should response generated with dahi schema <code>dahi:false default</code>. </p>
+
+<p>If we combine these we&#39;ll get a object like this: <code>{s:0,data:{},id:&quot;5a0407686090c8750ae9baa9&quot;,dahi:false}</code>. For more example look at right section.</p>
+<h3 id='how-to-get-raw-response-to-debug'>How to get raw response to debug</h3>
+<p>If you add ?raw=true to your url or add raw:true to your request json if you are using post method. With this you can debug what our system recieves before generation a output data from external api that defined from uri. example url: <code>https://template.maytap.me/service/5a0407686090c8750ae9baa9?raw=true</code>.</p>
+<h3 id='with-get-call'> With GET Call</h3>
+<p>In this method <code>(When template.method=&quot;GET&quot;)</code> data would be used to generate uri. Let&#39;s say our uri in template is <code>https://jsonplaceholder.typicode.com/posts/{{id}}</code>. It needs id to generate this uri so need to pass id value inside data object so our call uri needs to be <code>https://template.maytap.me/service/&lt;id&gt;?data.id=1</code>. This uri would generate <code>{s:0,data:{id:1},dahi:false}</code> object and send it to template.</p>
+<h3 id='with-post-call'> With POST Call</h3>
+<p>It&#39;s same with get method but in this we&#39;re sending all the information in request body.</p>
+<h3 id='template-39-s-post-method'>Template&#39;s POST Method</h3>
+<p>In previous sections we have examples that uses method <code>GET</code>. For template that uses <code>POST</code> there is just a small difference. data from <code>{s:0,data:{},dahi:false}</code> would be used as request body to call your uri that defined in template.</p>
 
       </div>
       <div class="dark-box">
