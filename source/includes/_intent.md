@@ -140,4 +140,49 @@ In Try Get screen you can check if your endpoint is working correctly with our s
 
 
 ## Forward
-Documentation coming soon...
+
+Forwards are basicly for branching to the other intents with specific conditions or without any. With this, you can use power of modularity. 
+
+For example, you are asking users to their informations. After you get their infos, you want to trigger different intent lets say 'confirm' intent and only over 18 aged user should reach this intent. After it matched with our condition(s), then we will pass the this intent's paramater values to forwarded intent.
+
+You can do it with 4 easy step and these are as follows...
+
+### Creating Forward Panel
+
+1. Press the 'Create New Forward' button.
+
+### Adding Condition
+
+Here we define our condition
+
+> ![Add Condition](/images/forward1.PNG)
+
+1. Press 'Add Condition' button
+2. Enter your variable  (For our example : {age})
+3. Select your condition type (For our example : greater than or equal )
+4. Type your conditional value (For our example : 18)
+5. Confirm it
+
+> ![Select Intent](/images/forward2.PNG)
+
+If you want to edit any condition after confirm, you can just click over the condition line then change any part of it.
+
+### Select Intent
+
+1. Select our desired intent (For our example : Confirm)
+
+### Passing Values
+
+> ![Passing Values](/images/forward3.PNG)
+
+1. Press the 'show params' button
+2. Enter your variable names or constant 
+
+
+
+### Notes
+
+We created one forward with single condition in our example but you can define multi forwards with multi conditions.
+
+The important part is a forward section will only do forward only if previous forwards fails and its all conditions matches.
+
