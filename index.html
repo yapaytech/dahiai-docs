@@ -687,7 +687,52 @@ Demo test for this intent
 
 <p>In Try Get screen you can check if your endpoint is working correctly with our system. And save as example data to used in json-picker section. Json picker is a variable generator with gui. You can click the <code>+</code> button at the right of the text output to access to json-picker. After that you&#39;ll see a screen with mock data from your last try get.</p>
 <h2 id='forward'>Forward</h2>
-<p>Documentation coming soon...</p>
+<p>Forwards are basicly for branching to the other intents with specific conditions or without any. With this, you can use power of modularity. </p>
+
+<p>For example, you are asking users to their informations. After you get their infos, you want to trigger different intent lets say &#39;confirm&#39; intent and only over 18 aged user should reach this intent. After it matched with our condition(s), then we will pass the this intent&#39;s paramater values to forwarded intent.</p>
+
+<p>You can do it with 4 easy step and these are as follows...</p>
+<h3 id='creating-forward-panel'>Creating Forward Panel</h3>
+<ol>
+<li>Press the &#39;Create New Forward&#39; button.</li>
+</ol>
+<h3 id='adding-condition'>Adding Condition</h3>
+<p>Here we define our condition</p>
+
+<blockquote>
+<p><img src="images/forward1.PNG" alt="Add Condition" /></p>
+</blockquote>
+
+<ol>
+<li>Press &#39;Add Condition&#39; button</li>
+<li>Enter your variable  (For our example : {age})</li>
+<li>Select your condition type (For our example : greater than or equal )</li>
+<li>Type your conditional value (For our example : 18)</li>
+<li>Confirm it</li>
+</ol>
+
+<blockquote>
+<p><img src="images/forward2.PNG" alt="Select Intent" /></p>
+</blockquote>
+
+<p>If you want to edit any condition after confirm, you can just click over the condition line then change any part of it.</p>
+<h3 id='select-intent'>Select Intent</h3>
+<ol>
+<li>Select our desired intent (For our example : Confirm)</li>
+</ol>
+<h3 id='passing-values'>Passing Values</h3>
+<blockquote>
+<p><img src="images/forward3.PNG" alt="Passing Values" /></p>
+</blockquote>
+
+<ol>
+<li>Press the &#39;show params&#39; button</li>
+<li>Enter your variable names or constant </li>
+</ol>
+<h3 id='notes'>Notes</h3>
+<p>We created one forward with single condition in our example but you can define multi forwards with multi conditions.</p>
+
+<p>The important part is a forward section will only do forward only if previous forwards fails and its all conditions matches.</p>
 <h1 id='entity'>Entity</h1>
 <blockquote>
 <p><img src="images/entity-list.png" alt="entity-list" /></p>
