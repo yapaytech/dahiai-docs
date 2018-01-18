@@ -133,7 +133,16 @@ other then that you can access to scope with using # tag. If you want to access 
 
 Let's say your api response is `{"arr":[1,2,3,4]}` and you want to print second element from arr array. To do so you can use `{{arr[1]}}` to print it.
 
-Another example with `{"test":{"text":"hello"}}` response data to print hello world we can use `{{test.text}}, World!` complete shema would look like this. `{{__type:"custom",type:"text",text:"{{test.text}}, World!"}}`. Here __type would wrap our object inside `{multi_message:true,messages:[<here our object would be put>]}` so dahi.ai can understand that this template a message printing operation. type:"text" is defines what type of message is this. and text would be what will be sended to the user.s
+Another example with `{"test":{"text":"hello"}}` response data to print hello world we can use `{{test.text}}, World!` complete shema would look like this. `{{__type:"custom",type:"text",text:"{{test.text}}, World!"}}`. Here __type would wrap our object inside `{multi_message:true,messages:[<here our object would be put>]}` so dahi.ai can understand that this template a message printing operation. type:"text" is defines what type of message is this. and text would be what will be sended to the user.
+
+### Javascript and Accessible libraries
+If you stuck with the thing you want to do and can't do with other tools you can always use javascript. To use javascript you need to start with an `$` character like `{{$[1,2,3].join(',')}}`. You can access to current cursor with `item` variable like `{{$item.title.replace('test','')}}` and can access to scope with `__root` keyword.
+Like if you want to access to data You could use `{{#body.data.y}}` would be equal to `{{$__root.body.data.y}}`.
+
+Libraries that can be accessed from inside of javascript code are as follow; `Moment.js (moment)`[docs](https://momentjs.com/docs/), `lodash (_)`[docs](https://lodash.com/docs/)
+
+### Html tags clear helper
+This is a simple clear helper to clear tags like `<br>` or `\n\t`. It's simple as it gets you just need to add `!` to start of `{{}}` like `{{!title}}`. It would get title and then clear extras.
 
 
 ## Helpers
