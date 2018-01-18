@@ -71,7 +71,7 @@ In anywhere in the intent you can call your variable with {$myVariableName}.
 | Date                    | For Date Values| 3 day later, tomorrow |
 | Array                   | For Text array selections | |
 | Horizontal Scroll Array | For Horizontal Card selections |         |
-| Multi Array             | For Text array selections with abilty to select multiple answer |         |
+| Multi Array             | For Text array selections with ability to select multiple answer |         |
 
 ## Output
 > ![intent-output-text](/images/intent-output-text.png)

@@ -139,6 +139,19 @@ Another example with `{"test":{"text":"hello"}}` response data to print hello wo
 ## Helpers
 Helpers are there to make things easier or add some features that you can do with basic features.
 
+Priority of helpers, and their sub keywords.
+
+|     Order | Sub Keys                  |
+|----------:|---------------------------|
+|    __type | none                      |
+|    __html | none                      |
+| __request | none                      |
+|    __each | __next, __limit, __filter |
+|      __if | __then, __else            |
+| __num     | __next                    |
+| __json    | __next                    |
+| __run     | none                      |
+
 ### __if helper
 ```json
 // shema examples
@@ -157,14 +170,10 @@ Helpers are there to make things easier or add some features that you can do wit
 {
   "__each":"",
   "__type": "custom",
-  "__if": "{{completed}}",
-  "__then": {
+  "__filter": "{{completed}}",
+  "__next": {
     "type": "text",
     "text": "Finished Work - {{title}}!"
-  },
-  "__else": {
-    "type": "text",
-    "text": "Not Finished Work - {{title}}!"
   }
 }
 ```
@@ -173,15 +182,21 @@ __if helper uses two more paramaters. They are __then and __else. __if helper ta
 
 For example; Let's create a template that uses `https://jsonplaceholder.typicode.com/todos` api. We want to print messages according to the todo's `completed` status. If it's completed we want to add `Finished` tag to start of items text data. In example we created there are two schemas. First one returns only the ones that has `completed:true`. Second one prints every one but adds `Finished Work` or `Not Finished Work` to start of the text according to the `completed` value.
 
-### __each helper
+## __each helper
 This is a foreach operation. It's value should point to a json array. If array is root of the json response `__each`'s value should be `""`.
 
 For example let assume our request from external service is `{test:[{key:1},{key:2}]}` and our schema is `{__each:"test",number:"{{key}}"}` would generate `[{number:"1"},{number:"2"}]`.
 
-### __limit helper
+### __limit helper for __each
 This is a helper for __each helper to put a limit to how much item would you like to return maximum. Value must be a integer.
 
-### __type helper
+### __filter helper for __each
+This is a helper for __each helper to filter arrays. It works same as __if helper but would be applied to each element before processing __each helper.
+
+### __next helper for __each
+This is a helper to wrap what should be used for __each iteration elements.
+
+## __type helper
 ```json
 // Example horizontal type Schema
 {
@@ -222,6 +237,198 @@ This a wrapper helper. Value generated from this object would be wrapped inside 
 `custom` wrapper would wrap output object inside a dahi.ai chat-bot send message operation format. `{multi_message:true,messages:[<here our object would be put>]}`. If the object that will be wrapped is array it would append to messages array. The object inside messages array must be a dahi.ai message formatted object like `{type:"text",text:"Hello, World!"}`.
 
 `horizontal` wrapper would wrap output object inside a dahi.ai chat-bot horizontal message type. Look at example for more information.
+
+## __request helper
+```json
+// Get Example
+{
+  "__request":{
+    "uri":"https://jsonplaceholder.typicode.com/todos",
+    "then":{
+      "__each":"",
+      "__limit":3,
+      "text":"{{title}}"
+    }
+  }
+}
+
+// Output of example above
+[
+  {
+    "text": "delectus aut autem"
+  },
+  {
+    "text": "quis ut nam facilis et officia qui"
+  },
+  {
+    "text": "fugiat veniam minus"
+  }
+]
+
+// Post Example
+{
+  "__request":{
+    "uri":"https://jsonplaceholder.typicode.com/todos",
+    "method":"post",
+    "body":{
+      "id":3,
+      "title":"product title {{name}}"
+    },
+    "then":{
+      //if you want to do something with response
+    }
+  }
+}
+
+```
+This is a tool to call external services. You can find an example of it at right section.
+
+Some more info about it;
+
+|     Key | Description                                                                                               | Default    | Type   | Required |
+|--------:|-----------------------------------------------------------------------------------------------------------|------------|--------|----------|
+|     uri | If your template needs to call a external `REST` service to extract data from you need to define it here. | No Default | String | Yes      |
+|  method | Which method used to call your uri call. `GET` or `POST`                                                  | GET        | String | No       |
+|    body | Body data if we want to post something.                                                                   | {}         | Object | No       |
+|    then | Uses the response from request to continue with schema.                                                   | No Default | Schema | No       |
+| headers | Headers used with request.                                                                                | {}         | Object | No       |
+
+## __run helper
+```json
+// Example 2 Schema which this schemas are in a template which it's id is "5a09415f91be0e2aef74b452"
+[
+  {
+    "__run":"5a09415f91be0e2aef74b452.1",
+    "__next":{
+      "text":"From 0. Schema, {{text}}"
+    }
+  },
+  {
+    "__run":"5a09415f91be0e2aef74b452.2"
+  },
+  {
+    "text":"From 2. Schema"
+  },
+  {
+    "__run":"5a09415f91be0e2aef74b452"
+  }
+]
+
+// Call url https://template.maytap.me/service/5a09415f91be0e2aef74b452
+{
+  "text":"From 0. Schema, From 2. Schema"
+}
+
+// Call url https://template.maytap.me/service/5a09415f91be0e2aef74b452?s=3
+{
+  "text":"From 0. Schema, From 2. Schema"
+}
+
+```
+
+This is a helper to run another schema with current objects. This is a jump helper to access your other helpers.
+
+In example we created a template with 4 schema and called first and fourth schema. When we call first schema it calls `"5a09415f91be0e2aef74b452.1"` schema which is [1] indexed schema of `"5a09415f91be0e2aef74b452"` template and continues to __next with the data retrieved from that schema and generates output `"From 0. Schema, From 2. Schema"`.
+
+### __next helper for __run
+When __run is used alone it would return the data from the template called but if you want to use that data use create something else you can add __next to same level as __run and continue your schema from there.
+
+## __num helper
+```json
+// Schema
+{
+  "parsed_number":{ "__num" : "0.2" }
+}
+
+// Output
+{
+  "parsed_number":0.2
+}
+```
+
+This is a helper to parse numbers from string. In example we put static `"0.2"` string but you can put the number with `"{{number}}"`.
+
+## __json helper
+```json
+// Schema for __json
+{
+  "parsed_json":{ "__json" : "{\"test\":\"test text\"}" }
+}
+
+// Output for __json
+{
+  "parsed_number":{ "test": "test text" }
+}
+```
+
+This is a helper to parse json from string.
+
+### __next helper for __json
+```json
+// Schema for __json with __next
+{
+  "parsed_json":{
+     "__json" : "{\"test\":\"test text\"}",
+     "__next":{
+       "next_next": "last {{test}}"
+     }
+  }
+}
+
+// Output for __json with __next
+{
+  "parsed_number":{ "next_next": "last test text" }
+}
+```
+This is a helper to continue schema with data parsed from json string. In example we put static `"{\"test\":\"test text\"}"` string but you can define it with `"{{json}}"` with external stringfied text.
+
+## __html helper
+```json
+
+// Example Template
+{
+  "uri":"https://www.lipsum.com/feed/html",
+  "schemas":{
+    "__html":{
+      "title":"{{#Inner > h1}}",
+      "paragraphs":{
+        "__each":"#lipsum p",
+        "text":"{{$$(item).text()}}"
+      }
+    },
+    "sys":"from {{title}}",
+    "texts":{
+      "__each":"paragraphs",
+      "__next":"{{text}}"
+    }
+  }
+}
+
+// Outpu from example above
+{
+  "texts": [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in tincidunt purus. Nunc et justo augue. Cras ut fringilla erat. Fusce quis aliquam elit, vitae cursus dui. Nam interdum neque a auctor congue. Fusce facilisis arcu ut odio accumsan, nec vehicula libero auctor. Maecenas lorem neque, interdum ac magna ut, bibendum egestas ipsum.",
+    "Sed mauris dolor, pharetra nec urna eu, eleifend fringilla felis. Aenean laoreet aliquet libero eu efficitur. Donec a augue lectus. Etiam in lacinia nulla, vitae pellentesque nunc. Phasellus hendrerit mattis posuere. Nulla condimentum, sapien a scelerisque bibendum, neque tellus laoreet nisi, at bibendum dolor mi eget dui. Sed id lorem finibus, pellentesque nulla eu, scelerisque dolor. Nulla sed lectus dolor. Nulla accumsan felis pharetra nibh porta, non egestas dui placerat. Donec fringilla leo ac sem tempus, sed porttitor diam malesuada. Suspendisse quis arcu risus. Maecenas tempor ultricies tellus, nec pharetra elit vulputate in. Nam leo ante, mollis sit amet mollis et, vehicula ac velit.",
+    "Cras tincidunt efficitur lacus non varius. Curabitur scelerisque nulla non mauris vehicula tempus. Aenean tellus sapien, mollis eget odio sed, posuere efficitur diam. In suscipit blandit eleifend. Suspendisse fringilla urna ac quam feugiat, efficitur feugiat enim viverra. Quisque congue purus eget finibus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus varius pharetra convallis. Integer ullamcorper quam libero, eget elementum eros dapibus a.",
+    "Ut elit ipsum, faucibus vitae elit quis, finibus viverra velit. Pellentesque magna sem, fringilla quis finibus id, egestas ut nunc. Nullam sit amet neque finibus, lacinia mi id, interdum magna. Donec eget ligula sem. Mauris sodales est in efficitur maximus. Duis quis convallis risus, at gravida nulla. Duis tempor commodo neque, ac mattis odio malesuada vel. Phasellus tempus dui eu congue dictum. Vivamus suscipit efficitur sapien, nec faucibus quam. Etiam porttitor ante in bibendum iaculis. Curabitur diam lectus, dapibus in arcu at, interdum accumsan leo. Quisque vulputate libero in neque lacinia, in elementum neque pulvinar.",
+    "Sed vel blandit ligula, a mattis libero. Suspendisse in velit felis. Morbi eleifend turpis ut lacus facilisis, vitae varius enim hendrerit. Proin a dictum odio. Ut ut est vehicula, feugiat massa eget, rhoncus nibh. Phasellus ac magna porta, venenatis sapien vitae, elementum ipsum. Donec in libero non turpis pretium rutrum nec sit amet erat. Praesent dapibus sed quam sed tincidunt. Mauris luctus ultrices risus, ultricies fermentum libero convallis ut."
+  ],
+  "sys": "from Lorem Ipsum"
+}
+
+```
+
+This is a parser with different rules. Basic `"{{key}}"` rule still works. But instead of key's we need to give it some css selector or javascript code to get what we want. In first example we're using __each to get an array of items then uses them to define values for items. `__html` helpers would work before other helpers and replace current cursor with crawled data. The helpers work after `__html` helper would use the cursor from it.
+
+In example there is 2 different usage way to get data first is `{{#Inner > h1}}` and second is `{{$$(item).text()}}`; Actualy first one is almost same as second but it's short way to write and don't need much knowledge about jquery or cheerio. `{{#Inner > h1}}` would be equal to `{{$$('#Inner > h1').text()}}` if it's not inside in an __each helper. If it's inside of a __each helper it would mean `{{$$(item).find('#Inner > h1').text()}}`.
+
+### __each helper for __html
+You can use it like this `{"__html":{"__each":"#item-list .product","title":"{{h1}}"}}`. In this example it would get the dom elements with `product` class inside a dom that it's id is `item-list`. Then for each product it would try to find an `h1` tagged dom and put's it's text to title keyword. This would create an array with products titles like `[{"title":"item 1"},{"title":"item 2"},{"title":"item 3"}]` and put it as our cursor. Next we can do something with this like: `{"__html":{"__each":"#item-list .product","title":"{{h1}}"},"__each":"","last":"{{title}}"}` and it would generate `[{"last":"item 1"},{"last":"item 2"},{"last":"item 3"}]`.
+
+Note: Inside __each you don't need to use `{{}}` like normal __each.
+
+### How to use advanced features
+You can use any features from popular nodejs library for html dom parsing [cheerio (Go to Cheerio docs)](https://github.com/cheeriojs/cheerio). To use it you need to put a `$` sembol to start of `{{}}` paramater system like `{{$}}` then you can write cheerio code inside of it. You can access to current cursor object with `item` variable like `{{$$(item).find('img').attr('src')}}` this would search for img tagged element and get it's src attribute. For more information you can check cheerio docs.
 
 ## Usage
 ```json
