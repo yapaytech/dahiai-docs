@@ -137,12 +137,12 @@ Another example with `{"test":{"text":"hello"}}` response data to print hello wo
 
 ### Javascript and Accessible libraries
 If you stuck with the thing you want to do and can't do with other tools you can always use javascript. To use javascript you need to start with an `$` character like `{{$[1,2,3].join(',')}}`. You can access to current cursor with `item` variable like `{{$item.title.replace('test','')}}` and can access to scope with `__root` keyword.
-Like if you want to access to data You could use `{{#body.data.y}}` would be equal to `{{$__root.body.data.y}}`.
+For example; if you want to access to data, you could use `{{#body.data.y}}` would be equal to `{{$__root.body.data.y}}`.
 
-Libraries that can be accessed from inside of javascript code are as follow; `Moment.js (moment)`[docs](https://momentjs.com/docs/), `lodash (_)`[docs](https://lodash.com/docs/)
+Libraries that can be accessed from inside of javascript code are as follow; `Moment.js (moment)`[docs](https://momentjs.com/docs/), `lodash (_)`[docs](https://lodash.com/docs/).
 
 ### Html tags clear helper
-This is a simple clear helper to clear tags like `<br>` or `\n\t`. It's simple as it gets you just need to add `!` to start of `{{}}` like `{{!title}}`. It would get title and then clear extras.
+This is a simple clear helper to clear tags like `<br>` or `\n\t`. It's usage is simple. You just need to add `!` to start of `{{}}` like `{{!title}}`. It would get title and then clear extras.
 
 
 ## Helpers
@@ -152,46 +152,73 @@ Priority of helpers, and their sub keywords.
 
 |     Order | Sub Keys                  |
 |----------:|---------------------------|
-|    __type | none                      |
-|    __html | none                      |
-| __request | none                      |
+|    __type |                           |
+|    __html |                           |
+| __request |                           |
 |    __each | __next, __limit, __filter |
 |      __if | __then, __else            |
 | __num     | __next                    |
 | __json    | __next                    |
-| __run     | none                      |
+| __run     |                           |
 
 ## __if helper
 ```json
-// shema examples
-// get every finished work
+// Example
 {
-  "__each":"",
   "__type": "custom",
   "__if": "{{completed}}",
   "__then": {
     "type": "text",
     "text": "Finished Work - {{title}}!"
+  },
+  "__else":{
+    "type": "text",
+    "text": "Unfinished Work - {{title}}!"
   }
 }
 
-// get every work and tag
+// Samething as above but different approach
 {
-  "__each":"",
   "__type": "custom",
-  "__filter": "{{completed}}",
-  "__next": {
-    "type": "text",
-    "text": "Finished Work - {{title}}!"
+  "type": "text",
+  "text": {
+    "__if": "{{completed}}",
+    "__then": "Finished Work - {{title}}!",
+    "__else": "Unfinished Work - {{title}}!"
   }
 }
+
+// Javascript example
+{
+  "__if":"'{{title}}'.indexOf('dahi.ai') > -1", // If title string contains dahi.ai returns true
+  "__then": true,
+  "__else": false
+}
+
 ```
 
-__if helper uses two more paramaters. They are __then and __else. __if helper takes a string value that filled with javascript condition code like `true`, `'{{finished}}==='yes'`, `{{id}} > 1`, `'{{name}}'.length > 20` , etc. As you can see you can use our Paramater System inside this string. If this value is true it'll use __then's value as generator, if not true it'll use __else's value as generator. If it looks for __then's or __else's value and can't find one it'll generate null. __then and __else value can be anything that is valid as 
+__if helper uses two more paramaters. They are __then and __else. __if helper takes a string value that filled with javascript condition code like `true`, `'{{finished}}'==='yes'`, `{{id}} > 1`, `'{{name}}'.length > 20` , etc. As you can see you can use our Paramater System inside this string. If this value is true it'll use __then's value as generator, if not true it'll use __else's value as generator. If it looks for __then's or __else's value and can't find one it'll generate null. __then and __else value can be anything that is valid as 
 
 For example; Let's create a template that uses `https://jsonplaceholder.typicode.com/todos` api. We want to print messages according to the todo's `completed` status. If it's completed we want to add `Finished` tag to start of items text data. In example we created there are two schemas. First one returns only the ones that has `completed:true`. Second one prints every one but adds `Finished Work` or `Not Finished Work` to start of the text according to the `completed` value.
 
 ## __each helper
+```json
+// Example for __each
+// Mock data used:
+{
+  "title":"dahi.ai template",
+  "list":[{"x":1},{"x":2},{"x":3},{"x":4},{"x":5},{"x":6},{"x":7},{"x":8}]
+}
+
+// Schema Used
+{
+  "__each":"list",
+  "__filter":"{{x}} % 2",
+  "__next":{"__num":"{{x}}"}
+}
+
+// Output 
+```
 This is a foreach operation. It's value should point to a json array. If array is root of the json response `__each`'s value should be `""`.
 
 For example let assume our request from external service is `{test:[{key:1},{key:2}]}` and our schema is `{__each:"test",number:"{{key}}"}` would generate `[{number:"1"},{number:"2"}]`.
@@ -342,7 +369,7 @@ In example we created a template with 4 schema and called first and fourth schem
 ### __next helper for __run
 When __run is used alone it would return the data from the template called but if you want to use that data use create something else you can add __next to same level as __run and continue your schema from there.
 
-## __num helper
+## __num helper
 ```json
 // Schema
 {
