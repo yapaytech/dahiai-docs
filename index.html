@@ -1438,12 +1438,14 @@ For example; if you want to access to data, you could use <code>{{#body.data.y}}
 
 </span><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">Used</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"__filter"</span><span class="p">:</span><span class="s2">"{{x}} % 2"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"__next"</span><span class="p">:{</span><span class="s2">"__num"</span><span class="p">:</span><span class="s2">"{{x}}"</span><span class="p">}</span><span class="w">
+  </span><span class="s2">"__each"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{x}} % 2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__next"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"__num"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{x}}"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w"> 
+</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This is a foreach operation. It&#39;s value should point to a json array. If array is root of the json response <code>__each</code>&#39;s value should be <code>&quot;&quot;</code>.</p>
 
