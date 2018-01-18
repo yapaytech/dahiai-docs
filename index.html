@@ -323,6 +323,9 @@
                     <a href="#helpers" class="toc-h2 toc-link" data-title="Helpers">Helpers</a>
                   </li>
                   <li>
+                    <a href="#__if-helper" class="toc-h2 toc-link" data-title="__if helper">__if helper</a>
+                  </li>
+                  <li>
                     <a href="#__each-helper" class="toc-h2 toc-link" data-title="__each helper">__each helper</a>
                   </li>
                   <li>
@@ -1338,7 +1341,14 @@ Here it will try to access data.id value from body. So we want to send id parama
 
 <p>Let&#39;s say your api response is <code>{&quot;arr&quot;:[1,2,3,4]}</code> and you want to print second element from arr array. To do so you can use <code>{{arr[1]}}</code> to print it.</p>
 
-<p>Another example with <code>{&quot;test&quot;:{&quot;text&quot;:&quot;hello&quot;}}</code> response data to print hello world we can use <code>{{test.text}}, World!</code> complete shema would look like this. <code>{{__type:&quot;custom&quot;,type:&quot;text&quot;,text:&quot;{{test.text}}, World!&quot;}}</code>. Here __type would wrap our object inside <code>{multi_message:true,messages:[&lt;here our object would be put&gt;]}</code> so dahi.ai can understand that this template a message printing operation. type:&quot;text&quot; is defines what type of message is this. and text would be what will be sended to the user.s</p>
+<p>Another example with <code>{&quot;test&quot;:{&quot;text&quot;:&quot;hello&quot;}}</code> response data to print hello world we can use <code>{{test.text}}, World!</code> complete shema would look like this. <code>{{__type:&quot;custom&quot;,type:&quot;text&quot;,text:&quot;{{test.text}}, World!&quot;}}</code>. Here __type would wrap our object inside <code>{multi_message:true,messages:[&lt;here our object would be put&gt;]}</code> so dahi.ai can understand that this template a message printing operation. type:&quot;text&quot; is defines what type of message is this. and text would be what will be sended to the user.</p>
+<h3 id='javascript-and-accessible-libraries'>Javascript and Accessible libraries</h3>
+<p>If you stuck with the thing you want to do and can&#39;t do with other tools you can always use javascript. To use javascript you need to start with an <code>$</code> character like <code>{{$[1,2,3].join(&#39;,&#39;)}}</code>. You can access to current cursor with <code>item</code> variable like <code>{{$item.title.replace(&#39;test&#39;,&#39;&#39;)}}</code> and can access to scope with <code>__root</code> keyword.
+Like if you want to access to data You could use <code>{{#body.data.y}}</code> would be equal to <code>{{$__root.body.data.y}}</code>.</p>
+
+<p>Libraries that can be accessed from inside of javascript code are as follow; <code>Moment.js (moment)</code><a href="https://momentjs.com/docs/">docs</a>, <code>lodash (_)</code><a href="https://lodash.com/docs/">docs</a></p>
+<h3 id='html-tags-clear-helper'>Html tags clear helper</h3>
+<p>This is a simple clear helper to clear tags like <code>&lt;br&gt;</code> or <code>\n\t</code>. It&#39;s simple as it gets you just need to add <code>!</code> to start of <code>{{}}</code> like <code>{{!title}}</code>. It would get title and then clear extras.</p>
 <h2 id='helpers'>Helpers</h2>
 <p>Helpers are there to make things easier or add some features that you can do with basic features.</p>
 
@@ -1383,7 +1393,7 @@ Here it will try to access data.id value from body. So we want to send id parama
 <td>none</td>
 </tr>
 </tbody></table>
-<h3 id='__if-helper'>__if helper</h3><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">shema</span><span class="w"> </span><span class="err">examples</span><span class="w">
+<h2 id='__if-helper'>__if helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">shema</span><span class="w"> </span><span class="err">examples</span><span class="w">
 </span><span class="err">//</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">every</span><span class="w"> </span><span class="err">finished</span><span class="w"> </span><span class="err">work</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
