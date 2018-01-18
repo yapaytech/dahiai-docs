@@ -212,12 +212,14 @@ For example; Let's create a template that uses `https://jsonplaceholder.typicode
 
 // Schema Used
 {
-  "__each":"list",
-  "__filter":"{{x}} % 2",
-  "__next":{"__num":"{{x}}"}
+  "__each": "list",
+  "__filter": "{{x}} % 2",
+  "__limit": 2,
+  "__next": { "__num": "{{x}}" }
 }
 
 // Output 
+[1, 3]
 ```
 This is a foreach operation. It's value should point to a json array. If array is root of the json response `__each`'s value should be `""`.
 
