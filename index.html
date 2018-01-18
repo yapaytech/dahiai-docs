@@ -338,7 +338,7 @@
                     <a href="#__run-helper" class="toc-h2 toc-link" data-title="__run helper">__run helper</a>
                   </li>
                   <li>
-                    <a href="#__num-helper" class="toc-h2 toc-link" data-title=" __num helper"> __num helper</a>
+                    <a href="#__num-helper" class="toc-h2 toc-link" data-title="__num helper">__num helper</a>
                   </li>
                   <li>
                     <a href="#__json-helper" class="toc-h2 toc-link" data-title="__json helper">__json helper</a>
@@ -1344,11 +1344,11 @@ Here it will try to access data.id value from body. So we want to send id parama
 <p>Another example with <code>{&quot;test&quot;:{&quot;text&quot;:&quot;hello&quot;}}</code> response data to print hello world we can use <code>{{test.text}}, World!</code> complete shema would look like this. <code>{{__type:&quot;custom&quot;,type:&quot;text&quot;,text:&quot;{{test.text}}, World!&quot;}}</code>. Here __type would wrap our object inside <code>{multi_message:true,messages:[&lt;here our object would be put&gt;]}</code> so dahi.ai can understand that this template a message printing operation. type:&quot;text&quot; is defines what type of message is this. and text would be what will be sended to the user.</p>
 <h3 id='javascript-and-accessible-libraries'>Javascript and Accessible libraries</h3>
 <p>If you stuck with the thing you want to do and can&#39;t do with other tools you can always use javascript. To use javascript you need to start with an <code>$</code> character like <code>{{$[1,2,3].join(&#39;,&#39;)}}</code>. You can access to current cursor with <code>item</code> variable like <code>{{$item.title.replace(&#39;test&#39;,&#39;&#39;)}}</code> and can access to scope with <code>__root</code> keyword.
-Like if you want to access to data You could use <code>{{#body.data.y}}</code> would be equal to <code>{{$__root.body.data.y}}</code>.</p>
+For example; if you want to access to data, you could use <code>{{#body.data.y}}</code> would be equal to <code>{{$__root.body.data.y}}</code>.</p>
 
-<p>Libraries that can be accessed from inside of javascript code are as follow; <code>Moment.js (moment)</code><a href="https://momentjs.com/docs/">docs</a>, <code>lodash (_)</code><a href="https://lodash.com/docs/">docs</a></p>
+<p>Libraries that can be accessed from inside of javascript code are as follow; <code>Moment.js (moment)</code><a href="https://momentjs.com/docs/">docs</a>, <code>lodash (_)</code><a href="https://lodash.com/docs/">docs</a>.</p>
 <h3 id='html-tags-clear-helper'>Html tags clear helper</h3>
-<p>This is a simple clear helper to clear tags like <code>&lt;br&gt;</code> or <code>\n\t</code>. It&#39;s simple as it gets you just need to add <code>!</code> to start of <code>{{}}</code> like <code>{{!title}}</code>. It would get title and then clear extras.</p>
+<p>This is a simple clear helper to clear tags like <code>&lt;br&gt;</code> or <code>\n\t</code>. It&#39;s usage is simple. You just need to add <code>!</code> to start of <code>{{}}</code> like <code>{{!title}}</code>. It would get title and then clear extras.</p>
 <h2 id='helpers'>Helpers</h2>
 <p>Helpers are there to make things easier or add some features that you can do with basic features.</p>
 
@@ -1362,15 +1362,15 @@ Like if you want to access to data You could use <code>{{#body.data.y}}</code> w
 </thead><tbody>
 <tr>
 <td style="text-align: right">__type</td>
-<td>none</td>
+<td></td>
 </tr>
 <tr>
 <td style="text-align: right">__html</td>
-<td>none</td>
+<td></td>
 </tr>
 <tr>
 <td style="text-align: right">__request</td>
-<td>none</td>
+<td></td>
 </tr>
 <tr>
 <td style="text-align: right">__each</td>
@@ -1390,36 +1390,61 @@ Like if you want to access to data You could use <code>{{#body.data.y}}</code> w
 </tr>
 <tr>
 <td style="text-align: right">__run</td>
-<td>none</td>
+<td></td>
 </tr>
 </tbody></table>
-<h2 id='__if-helper'>__if helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">shema</span><span class="w"> </span><span class="err">examples</span><span class="w">
-</span><span class="err">//</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">every</span><span class="w"> </span><span class="err">finished</span><span class="w"> </span><span class="err">work</span><span class="w">
+<h2 id='__if-helper'>__if helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"__if"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{completed}}"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"__then"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finished Work - {{title}}!"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"__else"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unfinished Work - {{title}}!"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span><span class="err">//</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">every</span><span class="w"> </span><span class="err">work</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">tag</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">Samething</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">above</span><span class="w"> </span><span class="err">but</span><span class="w"> </span><span class="err">different</span><span class="w"> </span><span class="err">approach</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"__filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{completed}}"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"__next"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finished Work - {{title}}!"</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"__if"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{completed}}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__then"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finished Work - {{title}}!"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__else"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unfinished Work - {{title}}!"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Javascript</span><span class="w"> </span><span class="err">example</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__if"</span><span class="p">:</span><span class="s2">"'{{title}}'.indexOf('dahi.ai') &gt; -1"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">If</span><span class="w"> </span><span class="err">title</span><span class="w"> </span><span class="err">string</span><span class="w"> </span><span class="err">contains</span><span class="w"> </span><span class="err">dahi.ai</span><span class="w"> </span><span class="err">returns</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="s2">"__then"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__else"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
 </span></code></pre>
-<p>__if helper uses two more paramaters. They are __then and __else. __if helper takes a string value that filled with javascript condition code like <code>true</code>, <code>&#39;{{finished}}===&#39;yes&#39;</code>, <code>{{id}} &gt; 1</code>, <code>&#39;{{name}}&#39;.length &gt; 20</code> , etc. As you can see you can use our Paramater System inside this string. If this value is true it&#39;ll use __then&#39;s value as generator, if not true it&#39;ll use __else&#39;s value as generator. If it looks for __then&#39;s or __else&#39;s value and can&#39;t find one it&#39;ll generate null. __then and __else value can be anything that is valid as </p>
+<p>__if helper uses two more paramaters. They are __then and __else. __if helper takes a string value that filled with javascript condition code like <code>true</code>, <code>&#39;{{finished}}&#39;===&#39;yes&#39;</code>, <code>{{id}} &gt; 1</code>, <code>&#39;{{name}}&#39;.length &gt; 20</code> , etc. As you can see you can use our Paramater System inside this string. If this value is true it&#39;ll use __then&#39;s value as generator, if not true it&#39;ll use __else&#39;s value as generator. If it looks for __then&#39;s or __else&#39;s value and can&#39;t find one it&#39;ll generate null. __then and __else value can be anything that is valid as </p>
 
 <p>For example; Let&#39;s create a template that uses <code>https://jsonplaceholder.typicode.com/todos</code> api. We want to print messages according to the todo&#39;s <code>completed</code> status. If it&#39;s completed we want to add <code>Finished</code> tag to start of items text data. In example we created there are two schemas. First one returns only the ones that has <code>completed:true</code>. Second one prints every one but adds <code>Finished Work</code> or <code>Not Finished Work</code> to start of the text according to the <code>completed</code> value.</p>
-<h2 id='__each-helper'>__each helper</h2>
+<h2 id='__each-helper'>__each helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">__each</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">Mock</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">used</span><span class="p">:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"dahi.ai template"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"list"</span><span class="p">:[{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">1</span><span class="p">},{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">2</span><span class="p">},{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">3</span><span class="p">},{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">4</span><span class="p">},{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">5</span><span class="p">},{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">6</span><span class="p">},{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">7</span><span class="p">},{</span><span class="s2">"x"</span><span class="p">:</span><span class="mi">8</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">Used</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__filter"</span><span class="p">:</span><span class="s2">"{{x}} % 2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__next"</span><span class="p">:{</span><span class="s2">"__num"</span><span class="p">:</span><span class="s2">"{{x}}"</span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w"> 
+</span></code></pre>
 <p>This is a foreach operation. It&#39;s value should point to a json array. If array is root of the json response <code>__each</code>&#39;s value should be <code>&quot;&quot;</code>.</p>
 
 <p>For example let assume our request from external service is <code>{test:[{key:1},{key:2}]}</code> and our schema is <code>{__each:&quot;test&quot;,number:&quot;{{key}}&quot;}</code> would generate <code>[{number:&quot;1&quot;},{number:&quot;2&quot;}]</code>.</p>
@@ -1593,7 +1618,7 @@ Like if you want to access to data You could use <code>{{#body.data.y}}</code> w
 <p>In example we created a template with 4 schema and called first and fourth schema. When we call first schema it calls <code>&quot;5a09415f91be0e2aef74b452.1&quot;</code> schema which is [1] indexed schema of <code>&quot;5a09415f91be0e2aef74b452&quot;</code> template and continues to __next with the data retrieved from that schema and generates output <code>&quot;From 0. Schema, From 2. Schema&quot;</code>.</p>
 <h3 id='__next-helper-for-__run'>__next helper for __run</h3>
 <p>When __run is used alone it would return the data from the template called but if you want to use that data use create something else you can add __next to same level as __run and continue your schema from there.</p>
-<h2 id='__num-helper'> __num helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w">
+<h2 id='__num-helper'>__num helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"parsed_number"</span><span class="p">:{</span><span class="w"> </span><span class="s2">"__num"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
