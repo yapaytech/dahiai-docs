@@ -323,6 +323,27 @@
                     <a href="#helpers" class="toc-h2 toc-link" data-title="Helpers">Helpers</a>
                   </li>
                   <li>
+                    <a href="#__each-helper" class="toc-h2 toc-link" data-title="__each helper">__each helper</a>
+                  </li>
+                  <li>
+                    <a href="#__type-helper" class="toc-h2 toc-link" data-title="__type helper">__type helper</a>
+                  </li>
+                  <li>
+                    <a href="#__request-helper" class="toc-h2 toc-link" data-title="__request helper">__request helper</a>
+                  </li>
+                  <li>
+                    <a href="#__run-helper" class="toc-h2 toc-link" data-title="__run helper">__run helper</a>
+                  </li>
+                  <li>
+                    <a href="#__num-helper" class="toc-h2 toc-link" data-title=" __num helper"> __num helper</a>
+                  </li>
+                  <li>
+                    <a href="#__json-helper" class="toc-h2 toc-link" data-title="__json helper">__json helper</a>
+                  </li>
+                  <li>
+                    <a href="#__html-helper" class="toc-h2 toc-link" data-title="__html helper">__html helper</a>
+                  </li>
+                  <li>
                     <a href="#usage" class="toc-h2 toc-link" data-title="Usage">Usage</a>
                   </li>
               </ul>
@@ -528,7 +549,7 @@ In anywhere in the intent you can call your variable with {$myVariableName}. </p
 </tr>
 <tr>
 <td style="text-align: center">Multi Array</td>
-<td>For Text array selections with abilty to select multiple answer</td>
+<td>For Text array selections with ability to select multiple answer</td>
 <td></td>
 </tr>
 </tbody></table>
@@ -1275,6 +1296,48 @@ Here it will try to access data.id value from body. So we want to send id parama
 <p>Another example with <code>{&quot;test&quot;:{&quot;text&quot;:&quot;hello&quot;}}</code> response data to print hello world we can use <code>{{test.text}}, World!</code> complete shema would look like this. <code>{{__type:&quot;custom&quot;,type:&quot;text&quot;,text:&quot;{{test.text}}, World!&quot;}}</code>. Here __type would wrap our object inside <code>{multi_message:true,messages:[&lt;here our object would be put&gt;]}</code> so dahi.ai can understand that this template a message printing operation. type:&quot;text&quot; is defines what type of message is this. and text would be what will be sended to the user.s</p>
 <h2 id='helpers'>Helpers</h2>
 <p>Helpers are there to make things easier or add some features that you can do with basic features.</p>
+
+<p>Priority of helpers, and their sub keywords.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Order</th>
+<th>Sub Keys</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">__type</td>
+<td>none</td>
+</tr>
+<tr>
+<td style="text-align: right">__html</td>
+<td>none</td>
+</tr>
+<tr>
+<td style="text-align: right">__request</td>
+<td>none</td>
+</tr>
+<tr>
+<td style="text-align: right">__each</td>
+<td>__next, __limit, __filter</td>
+</tr>
+<tr>
+<td style="text-align: right">__if</td>
+<td>__then, __else</td>
+</tr>
+<tr>
+<td style="text-align: right">__num</td>
+<td>__next</td>
+</tr>
+<tr>
+<td style="text-align: right">__json</td>
+<td>__next</td>
+</tr>
+<tr>
+<td style="text-align: right">__run</td>
+<td>none</td>
+</tr>
+</tbody></table>
 <h3 id='__if-helper'>__if helper</h3><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">shema</span><span class="w"> </span><span class="err">examples</span><span class="w">
 </span><span class="err">//</span><span class="w"> </span><span class="err">get</span><span class="w"> </span><span class="err">every</span><span class="w"> </span><span class="err">finished</span><span class="w"> </span><span class="err">work</span><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -1291,27 +1354,27 @@ Here it will try to access data.id value from body. So we want to send id parama
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"__if"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{completed}}"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"__then"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__filter"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{completed}}"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__next"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Finished Work - {{title}}!"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"__else"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Finished Work - {{title}}!"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>__if helper uses two more paramaters. They are __then and __else. __if helper takes a string value that filled with javascript condition code like <code>true</code>, <code>&#39;{{finished}}===&#39;yes&#39;</code>, <code>{{id}} &gt; 1</code>, <code>&#39;{{name}}&#39;.length &gt; 20</code> , etc. As you can see you can use our Paramater System inside this string. If this value is true it&#39;ll use __then&#39;s value as generator, if not true it&#39;ll use __else&#39;s value as generator. If it looks for __then&#39;s or __else&#39;s value and can&#39;t find one it&#39;ll generate null. __then and __else value can be anything that is valid as </p>
 
 <p>For example; Let&#39;s create a template that uses <code>https://jsonplaceholder.typicode.com/todos</code> api. We want to print messages according to the todo&#39;s <code>completed</code> status. If it&#39;s completed we want to add <code>Finished</code> tag to start of items text data. In example we created there are two schemas. First one returns only the ones that has <code>completed:true</code>. Second one prints every one but adds <code>Finished Work</code> or <code>Not Finished Work</code> to start of the text according to the <code>completed</code> value.</p>
-<h3 id='__each-helper'>__each helper</h3>
+<h2 id='__each-helper'>__each helper</h2>
 <p>This is a foreach operation. It&#39;s value should point to a json array. If array is root of the json response <code>__each</code>&#39;s value should be <code>&quot;&quot;</code>.</p>
 
 <p>For example let assume our request from external service is <code>{test:[{key:1},{key:2}]}</code> and our schema is <code>{__each:&quot;test&quot;,number:&quot;{{key}}&quot;}</code> would generate <code>[{number:&quot;1&quot;},{number:&quot;2&quot;}]</code>.</p>
-<h3 id='__limit-helper'>__limit helper</h3>
+<h3 id='__limit-helper-for-__each'>__limit helper for __each</h3>
 <p>This is a helper for __each helper to put a limit to how much item would you like to return maximum. Value must be a integer.</p>
-<h3 id='__type-helper'>__type helper</h3><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">horizontal</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">Schema</span><span class="w">
+<h3 id='__filter-helper-for-__each'>__filter helper for __each</h3>
+<p>This is a helper for __each helper to filter arrays. It works same as __if helper but would be applied to each element before processing __each helper.</p>
+<h3 id='__next-helper-for-__each'>__next helper for __each</h3>
+<p>This is a helper to wrap what should be used for __each iteration elements.</p>
+<h2 id='__type-helper'>__type helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">horizontal</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="err">Schema</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"__type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"horizontal"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"__limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -1350,6 +1413,211 @@ Here it will try to access data.id value from body. So we want to send id parama
 <p><code>custom</code> wrapper would wrap output object inside a dahi.ai chat-bot send message operation format. <code>{multi_message:true,messages:[&lt;here our object would be put&gt;]}</code>. If the object that will be wrapped is array it would append to messages array. The object inside messages array must be a dahi.ai message formatted object like <code>{type:&quot;text&quot;,text:&quot;Hello, World!&quot;}</code>.</p>
 
 <p><code>horizontal</code> wrapper would wrap output object inside a dahi.ai chat-bot horizontal message type. Look at example for more information.</p>
+<h2 id='__request-helper'>__request helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Get</span><span class="w"> </span><span class="err">Example</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__request"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="s2">"https://jsonplaceholder.typicode.com/todos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"then"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"__limit"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="s2">"{{title}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">example</span><span class="w"> </span><span class="err">above</span><span class="w">
+</span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delectus aut autem"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quis ut nam facilis et officia qui"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fugiat veniam minus"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Post</span><span class="w"> </span><span class="err">Example</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"__request"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"uri"</span><span class="p">:</span><span class="s2">"https://jsonplaceholder.typicode.com/todos"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="s2">"post"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"product title {{name}}"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"then"</span><span class="p">:{</span><span class="w">
+      </span><span class="err">//if</span><span class="w"> </span><span class="err">you</span><span class="w"> </span><span class="err">want</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">do</span><span class="w"> </span><span class="err">something</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">response</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This is a tool to call external services. You can find an example of it at right section.</p>
+
+<p>Some more info about it;</p>
+
+<table><thead>
+<tr>
+<th style="text-align: right">Key</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: right">uri</td>
+<td>If your template needs to call a external <code>REST</code> service to extract data from you need to define it here.</td>
+<td>No Default</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td style="text-align: right">method</td>
+<td>Which method used to call your uri call. <code>GET</code> or <code>POST</code></td>
+<td>GET</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">body</td>
+<td>Body data if we want to post something.</td>
+<td>{}</td>
+<td>Object</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">then</td>
+<td>Uses the response from request to continue with schema.</td>
+<td>No Default</td>
+<td>Schema</td>
+<td>No</td>
+</tr>
+<tr>
+<td style="text-align: right">headers</td>
+<td>Headers used with request.</td>
+<td>{}</td>
+<td>Object</td>
+<td>No</td>
+</tr>
+</tbody></table>
+<h2 id='__run-helper'>__run helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">schemas</span><span class="w"> </span><span class="err">are</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">a</span><span class="w"> </span><span class="err">template</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">it's</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="s2">"5a09415f91be0e2aef74b452"</span><span class="w">
+</span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"__run"</span><span class="p">:</span><span class="s2">"5a09415f91be0e2aef74b452.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"__next"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="s2">"From 0. Schema, {{text}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"__run"</span><span class="p">:</span><span class="s2">"5a09415f91be0e2aef74b452.2"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="s2">"From 2. Schema"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"__run"</span><span class="p">:</span><span class="s2">"5a09415f91be0e2aef74b452"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Call</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">5</span><span class="err">a</span><span class="mi">09415</span><span class="err">f</span><span class="mi">91</span><span class="err">be</span><span class="mi">0</span><span class="err">e</span><span class="mi">2</span><span class="err">aef</span><span class="mi">74</span><span class="err">b</span><span class="mi">452</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"text"</span><span class="p">:</span><span class="s2">"From 0. Schema, From 2. Schema"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Call</span><span class="w"> </span><span class="err">url</span><span class="w"> </span><span class="err">https</span><span class="p">:</span><span class="err">//template.maytap.me/service/</span><span class="mi">5</span><span class="err">a</span><span class="mi">09415</span><span class="err">f</span><span class="mi">91</span><span class="err">be</span><span class="mi">0</span><span class="err">e</span><span class="mi">2</span><span class="err">aef</span><span class="mi">74</span><span class="err">b</span><span class="mi">452</span><span class="err">?s=</span><span class="mi">3</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"text"</span><span class="p">:</span><span class="s2">"From 0. Schema, From 2. Schema"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This is a helper to run another schema with current objects. This is a jump helper to access your other helpers.</p>
+
+<p>In example we created a template with 4 schema and called first and fourth schema. When we call first schema it calls <code>&quot;5a09415f91be0e2aef74b452.1&quot;</code> schema which is [1] indexed schema of <code>&quot;5a09415f91be0e2aef74b452&quot;</code> template and continues to __next with the data retrieved from that schema and generates output <code>&quot;From 0. Schema, From 2. Schema&quot;</code>.</p>
+<h3 id='__next-helper-for-__run'>__next helper for __run</h3>
+<p>When __run is used alone it would return the data from the template called but if you want to use that data use create something else you can add __next to same level as __run and continue your schema from there.</p>
+<h2 id='__num-helper'> __num helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"parsed_number"</span><span class="p">:{</span><span class="w"> </span><span class="s2">"__num"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"parsed_number"</span><span class="p">:</span><span class="mf">0.2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This is a helper to parse numbers from string. In example we put static <code>&quot;0.2&quot;</code> string but you can put the number with <code>&quot;{{number}}&quot;</code>.</p>
+<h2 id='__json-helper'>__json helper</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">__json</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"parsed_json"</span><span class="p">:{</span><span class="w"> </span><span class="s2">"__json"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">test</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">test text</span><span class="se">\"</span><span class="s2">}"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">__json</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"parsed_number"</span><span class="p">:{</span><span class="w"> </span><span class="s2">"test"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test text"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This is a helper to parse json from string.</p>
+<h3 id='__next-helper-for-__json'>__next helper for __json</h3><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Schema</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">__json</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">__next</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"parsed_json"</span><span class="p">:{</span><span class="w">
+     </span><span class="s2">"__json"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">test</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">test text</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"__next"</span><span class="p">:{</span><span class="w">
+       </span><span class="s2">"next_next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last {{test}}"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Output</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">__json</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">__next</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"parsed_number"</span><span class="p">:{</span><span class="w"> </span><span class="s2">"next_next"</span><span class="p">:</span><span class="w"> </span><span class="s2">"last test text"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This is a helper to continue schema with data parsed from json string. In example we put static <code>&quot;{\&quot;test\&quot;:\&quot;test text\&quot;}&quot;</code> string but you can define it with <code>&quot;{{json}}&quot;</code> with external stringfied text.</p>
+<h2 id='__html-helper'>__html helper</h2><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">Example</span><span class="w"> </span><span class="err">Template</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"uri"</span><span class="p">:</span><span class="s2">"https://www.lipsum.com/feed/html"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"schemas"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"__html"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"{{#Inner &gt; h1}}"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"paragraphs"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">"#lipsum p"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="s2">"{{$$(item).text()}}"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sys"</span><span class="p">:</span><span class="s2">"from {{title}}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"texts"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"__each"</span><span class="p">:</span><span class="s2">"paragraphs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"__next"</span><span class="p">:</span><span class="s2">"{{text}}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="err">//</span><span class="w"> </span><span class="err">Outpu</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">example</span><span class="w"> </span><span class="err">above</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"texts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in tincidunt purus. Nunc et justo augue. Cras ut fringilla erat. Fusce quis aliquam elit, vitae cursus dui. Nam interdum neque a auctor congue. Fusce facilisis arcu ut odio accumsan, nec vehicula libero auctor. Maecenas lorem neque, interdum ac magna ut, bibendum egestas ipsum."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Sed mauris dolor, pharetra nec urna eu, eleifend fringilla felis. Aenean laoreet aliquet libero eu efficitur. Donec a augue lectus. Etiam in lacinia nulla, vitae pellentesque nunc. Phasellus hendrerit mattis posuere. Nulla condimentum, sapien a scelerisque bibendum, neque tellus laoreet nisi, at bibendum dolor mi eget dui. Sed id lorem finibus, pellentesque nulla eu, scelerisque dolor. Nulla sed lectus dolor. Nulla accumsan felis pharetra nibh porta, non egestas dui placerat. Donec fringilla leo ac sem tempus, sed porttitor diam malesuada. Suspendisse quis arcu risus. Maecenas tempor ultricies tellus, nec pharetra elit vulputate in. Nam leo ante, mollis sit amet mollis et, vehicula ac velit."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Cras tincidunt efficitur lacus non varius. Curabitur scelerisque nulla non mauris vehicula tempus. Aenean tellus sapien, mollis eget odio sed, posuere efficitur diam. In suscipit blandit eleifend. Suspendisse fringilla urna ac quam feugiat, efficitur feugiat enim viverra. Quisque congue purus eget finibus volutpat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus varius pharetra convallis. Integer ullamcorper quam libero, eget elementum eros dapibus a."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ut elit ipsum, faucibus vitae elit quis, finibus viverra velit. Pellentesque magna sem, fringilla quis finibus id, egestas ut nunc. Nullam sit amet neque finibus, lacinia mi id, interdum magna. Donec eget ligula sem. Mauris sodales est in efficitur maximus. Duis quis convallis risus, at gravida nulla. Duis tempor commodo neque, ac mattis odio malesuada vel. Phasellus tempus dui eu congue dictum. Vivamus suscipit efficitur sapien, nec faucibus quam. Etiam porttitor ante in bibendum iaculis. Curabitur diam lectus, dapibus in arcu at, interdum accumsan leo. Quisque vulputate libero in neque lacinia, in elementum neque pulvinar."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Sed vel blandit ligula, a mattis libero. Suspendisse in velit felis. Morbi eleifend turpis ut lacus facilisis, vitae varius enim hendrerit. Proin a dictum odio. Ut ut est vehicula, feugiat massa eget, rhoncus nibh. Phasellus ac magna porta, venenatis sapien vitae, elementum ipsum. Donec in libero non turpis pretium rutrum nec sit amet erat. Praesent dapibus sed quam sed tincidunt. Mauris luctus ultrices risus, ultricies fermentum libero convallis ut."</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"sys"</span><span class="p">:</span><span class="w"> </span><span class="s2">"from Lorem Ipsum"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This is a parser with different rules. Basic <code>&quot;{{key}}&quot;</code> rule still works. But instead of key&#39;s we need to give it some css selector or javascript code to get what we want. In first example we&#39;re using <strong>each to get an array of items then uses them to define values for items. `</strong>html<code>helpers would work before other helpers and replace current cursor with crawled data. The helpers work after</code>__html` helper would use the cursor from it.</p>
+
+<p>In example there is 2 different usage way to get data first is <code>{{#Inner &gt; h1}}</code> and second is <code>{{$$(item).text()}}</code>; Actualy first one is almost same as second but it&#39;s short way to write and don&#39;t need much knowledge about jquery or cheerio. <code>{{#Inner &gt; h1}}</code> would be equal to <code>{{$$(&#39;#Inner &gt; h1&#39;).text()}}</code> if it&#39;s not inside in an __each helper. If it&#39;s inside of a __each helper it would mean <code>{{$$(item).find(&#39;#Inner &gt; h1&#39;).text()}}</code>.</p>
+<h3 id='__each-helper-for-__html'>__each helper for __html</h3>
+<p>You can use it like this <code>{&quot;__html&quot;:{&quot;__each&quot;:&quot;#item-list .product&quot;,&quot;title&quot;:&quot;{{h1}}&quot;}}</code>. In this example it would get the dom elements with <code>product</code> class inside a dom that it&#39;s id is <code>item-list</code>. Then for each product it would try to find an <code>h1</code> tagged dom and put&#39;s it&#39;s text to title keyword. This would create an array with products titles like <code>[{&quot;title&quot;:&quot;item 1&quot;},{&quot;title&quot;:&quot;item 2&quot;},{&quot;title&quot;:&quot;item 3&quot;}]</code> and put it as our cursor. Next we can do something with this like: <code>{&quot;__html&quot;:{&quot;__each&quot;:&quot;#item-list .product&quot;,&quot;title&quot;:&quot;{{h1}}&quot;},&quot;__each&quot;:&quot;&quot;,&quot;last&quot;:&quot;{{title}}&quot;}</code> and it would generate <code>[{&quot;last&quot;:&quot;item 1&quot;},{&quot;last&quot;:&quot;item 2&quot;},{&quot;last&quot;:&quot;item 3&quot;}]</code>.</p>
+
+<p>Note: Inside __each you don&#39;t need to use <code>{{}}</code> like normal __each.</p>
+<h3 id='how-to-use-advanced-features'>How to use advanced features</h3>
+<p>You can use any features from popular nodejs library for html dom parsing <a href="https://github.com/cheeriojs/cheerio">cheerio (Go to Cheerio docs)</a>. To use it you need to put a <code>$</code> sembol to start of <code>{{}}</code> paramater system like <code>{{$}}</code> then you can write cheerio code inside of it. You can access to current cursor object with <code>item</code> variable like <code>{{$$(item).find(&#39;img&#39;).attr(&#39;src&#39;)}}</code> this would search for img tagged element and get it&#39;s src attribute. For more information you can check cheerio docs.</p>
 <h2 id='usage'>Usage</h2><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Template</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"uri"</span><span class="p">:</span><span class="s2">"https://jsonplaceholder.typicode.com/posts/{{id}}"</span><span class="p">,</span><span class="w">
