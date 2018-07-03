@@ -254,10 +254,28 @@
                     <a href="#variables" class="toc-h2 toc-link" data-title="Variables">Variables</a>
                   </li>
                   <li>
+                    <a href="#variable-types" class="toc-h2 toc-link" data-title="Variable Types">Variable Types</a>
+                  </li>
+                  <li>
+                    <a href="#variable-keys-options" class="toc-h2 toc-link" data-title="Variable Keys options">Variable Keys options</a>
+                  </li>
+                  <li>
+                    <a href="#variable-tojson" class="toc-h2 toc-link" data-title="Variable tojson">Variable tojson</a>
+                  </li>
+                  <li>
                     <a href="#output" class="toc-h2 toc-link" data-title="Output">Output</a>
                   </li>
                   <li>
                     <a href="#operation" class="toc-h2 toc-link" data-title="Operation">Operation</a>
+                  </li>
+                  <li>
+                    <a href="#call-operation" class="toc-h2 toc-link" data-title="Call Operation">Call Operation</a>
+                  </li>
+                  <li>
+                    <a href="#cache-operation" class="toc-h2 toc-link" data-title="Cache Operation">Cache Operation</a>
+                  </li>
+                  <li>
+                    <a href="#forwardtoagent-operation" class="toc-h2 toc-link" data-title="ForwardToAgent Operation">ForwardToAgent Operation</a>
                   </li>
                   <li>
                     <a href="#forward" class="toc-h2 toc-link" data-title="Forward">Forward</a>
@@ -487,7 +505,7 @@ This intent has just one job. Whenever user says hello, it will make to your bot
 
 <p>After filling all required areas now your variable is ready to use it. 
 In anywhere in the intent you can call your variable with {$myVariableName}. </p>
-<h3 id='variable-types'>Variable Types</h3>
+<h2 id='variable-types'>Variable Types</h2>
 <table><thead>
 <tr>
 <th style="text-align: center">Type</th>
@@ -504,6 +522,11 @@ In anywhere in the intent you can call your variable with {$myVariableName}. </p
 <td style="text-align: center">Int</td>
 <td>For integer values</td>
 <td>12456</td>
+</tr>
+<tr>
+<td style="text-align: center">Regex</td>
+<td>For string values with regex matching. Needs regex key.</td>
+<td><code>es123</code> with regex:<code>\w{2}\d{3}</code></td>
 </tr>
 <tr>
 <td style="text-align: center">Identifier</td>
@@ -556,6 +579,30 @@ In anywhere in the intent you can call your variable with {$myVariableName}. </p
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='variable-keys-options'>Variable Keys options</h2>
+<blockquote>
+<p><img src="images/regex_filter.png" alt="regex-filter" />
+<img src="images/regex_filter_key.png" alt="regex-filter-key" /></p>
+</blockquote>
+
+<ol>
+<li>default: default value for variable if a value is not defined for it.</li>
+<li>regex_filter: regex detect for type <code>Text</code> variable.</li>
+<li>regex_filter_index: regex group index to select. Needs regex_filter. In the example if a user types test 123 our paramater would put 123 to variable.</li>
+<li>regex: regex detect for type <code>Regex</code> variable.</li>
+</ol>
+
+<p>Regex type is a little bit different from Text type. Text type with regex_filter would try to detect value from first message that triggers this intent and fill the variable but if he can&#39;t find a value matches with regex it would ask the variable question to user to fill the variable. In this case user can provide any string answer to this variable without limits of regex. In short in Text type with regex_filter, regex is used only for first time value detection. </p>
+
+<p>If you want to do a custom matching rules that must be followed by user answer like a project number that has to start with 2 string and end with 3 number you can use <code>Regex</code> variable type with regex key defined as <code>\w{2}\d{3}</code>. In this case this regex will be used for initial value detection and after when is question asked to user. With this you can set custom rules for variables.</p>
+
+<p>You can alse use <code>{key}</code> system to fill variable default value or question. Like you have 2 paramater first one ask&#39;s the users name and the second one ask&#39;s user email you can define second question like <code>Hello, {name}. Please provide a valid email for further contact</code>.</p>
+<h2 id='variable-tojson'>Variable tojson</h2>
+<blockquote>
+<p><img src="images/tojson.png" alt="tojson" /></p>
+</blockquote>
+
+<p>You can print value of variable to string with tojson helper. You just need to add .tojson() to end of variable name like <code>{places.tojson()}</code>. You can also output to operations.</p>
 <h2 id='output'>Output</h2>
 <blockquote>
 <p><img src="images/intent-output-text.png" alt="intent-output-text" />
@@ -608,17 +655,7 @@ In anywhere in the intent you can call your variable with {$myVariableName}. </p
 <p>Or if you want to print something from <code>GET</code> or <code>POST</code> operation you can use <code>return</code> variable name like <code>{return.name}</code>.</p>
 <h2 id='operation'>Operation</h2>
 <blockquote>
-<p><img src="images/ope-get.png" alt="operation get" />
-Try Get Screen
-<img src="images/ope-get-try.png" alt="operation get try" />
-Json Picker Button
-<img src="images/ope-get-picker.png" alt="operation json picker" />
-Json Picker Screen
-<img src="images/ope-get-picker-screen.png" alt="operation json picker screen" />
-How to use in output section
-<img src="images/ope-get-output.png" alt="operation output" />
-Demo test for this intent
-<img src="images/ope-get-chat.png" alt="operation chat" /></p>
+<p><img src="images/create_op.png" alt="create_op" /></p>
 </blockquote>
 
 <p>Operation is a way to trigger an external resource event or save to cache. There are two types of operation. These are as follow...</p>
@@ -637,8 +674,26 @@ Demo test for this intent
 <td style="text-align: right">Cache</td>
 <td>Save to cache a variable operation</td>
 </tr>
+<tr>
+<td style="text-align: right">ForwardToAgent</td>
+<td>Disables bot and forward the conversation to agent waiting list.</td>
+</tr>
 </tbody></table>
-<h3 id='call-service'>Call Service</h3>
+<h2 id='call-operation'>Call Operation</h2>
+<blockquote>
+<p><img src="images/ope-get.png" alt="operation get" />
+Try Get Screen
+<img src="images/ope-get-try.png" alt="operation get try" />
+Json Picker Button
+<img src="images/ope-get-picker.png" alt="operation json picker" />
+Json Picker Screen
+<img src="images/ope-get-picker-screen.png" alt="operation json picker screen" />
+How to use in output section
+<img src="images/ope-get-output.png" alt="operation output" />
+Demo test for this intent
+<img src="images/ope-get-chat.png" alt="operation chat" /></p>
+</blockquote>
+
 <p>Call Service is a way to interact with external resources or apis. There are two types of Call Service currently available.</p>
 
 <table><thead>
@@ -689,6 +744,14 @@ Demo test for this intent
 </tbody></table>
 
 <p>In Try Get screen you can check if your endpoint is working correctly with our system. And save as example data to used in json-picker section. Json picker is a variable generator with gui. You can click the <code>+</code> button at the right of the text output to access to json-picker. After that you&#39;ll see a screen with mock data from your last try get.</p>
+<h2 id='cache-operation'>Cache Operation</h2>
+<blockquote>
+<p><img src="images/op_cache_set.png" alt="op_cache_set" /></p>
+</blockquote>
+
+<p>You can either set or clear a key in user.prop scope with this operation. To use this you need to define your key in first textbox and value in second textbox. For example; <code>user.prop.lastKey</code> and <code>{{key}}</code>. To use this value in intents you need to start your key with $ character like <code>{{$user.prop.lastKey}}</code>.</p>
+<h2 id='forwardtoagent-operation'>ForwardToAgent Operation</h2>
+<p>This operation disables bot in this conversation and puts the conversation agent waiting list.</p>
 <h2 id='forward'>Forward</h2>
 <p>Forwards are basicly for branching to the other intents with specific conditions or without any. With this, you can use power of modularity. </p>
 
