@@ -56,12 +56,13 @@ Enter your variable's name to input area below Define Variable header. After you
 After filling all required areas now your variable is ready to use it. 
 In anywhere in the intent you can call your variable with {$myVariableName}. 
 
-### Variable Types
+## Variable Types
 
 |           Type          | Description | Example |
 |:-----------------------:|-------------|---------|
 | Text                    | For string values | `Hello`       |
 | Int                     | For integer values            |     12456    |
+| Regex                   | For string values with regex matching. Needs regex key. | `es123` with regex:`\w{2}\d{3}`|
 | Identifier              | For 11 digit country identification number. Only for turkey right now. |  12345678901       |
 | Location                | For location value such as location sharing messages |  41.015137,28.979530  |
 | Email                   | For email values | myemail@yapaytech.com |
@@ -72,6 +73,30 @@ In anywhere in the intent you can call your variable with {$myVariableName}.
 | Array                   | For Text array selections | |
 | Horizontal Scroll Array | For Horizontal Card selections |         |
 | Multi Array             | For Text array selections with ability to select multiple answer |         |
+
+## Variable Keys options
+> ![regex-filter](/images/regex_filter.png)
+> ![regex-filter-key](/images/regex_filter_key.png)
+
+1. default: default value for variable if a value is not defined for it.
+2. regex_filter: regex detect for type `Text` variable.
+3. regex_filter_index: regex group index to select. Needs regex_filter. In the example if a user types test 123 our paramater would put 123 to variable.
+4. regex: regex detect for type `Regex` variable.
+
+Regex type is a little bit different from Text type. Text type with regex_filter would try to detect value from first message that triggers this intent and fill the variable but if he can't find a value matches with regex it would ask the variable question to user to fill the variable. In this case user can provide any string answer to this variable without limits of regex. In short in Text type with regex_filter, regex is used only for first time value detection. 
+
+If you want to do a custom matching rules that must be followed by user answer like a project number that has to start with 2 string and end with 3 number you can use `Regex` variable type with regex key defined as `\w{2}\d{3}`. In this case this regex will be used for initial value detection and after when is question asked to user. With this you can set custom rules for variables.
+
+You can alse use `{key}` system to fill variable default value or question. Like you have 2 paramater first one ask's the users name and the second one ask's user email you can define second question like `Hello, {name}. Please provide a valid email for further contact`.
+
+
+
+## Variable tojson
+> ![tojson](/images/tojson.png)
+
+You can print value of variable to string with tojson helper. You just need to add .tojson() to end of variable name like `{places.tojson()}`. You can also output to operations.
+
+
 
 ## Output
 > ![intent-output-text](/images/intent-output-text.png)
@@ -98,6 +123,17 @@ To use variables in your intent you can use `{<key>}`. For example if our parama
 Or if you want to print something from `GET` or `POST` operation you can use `return` variable name like `{return.name}`.
 
 ## Operation
+> ![create_op](/images/create_op.png)
+
+Operation is a way to trigger an external resource event or save to cache. There are two types of operation. These are as follow...
+
+|         Type | Description                        |
+|-------------:|------------------------------------|
+| Call Service | Get or Post web request operation  |
+|        Cache | Save to cache a variable operation |
+| ForwardToAgent | Disables bot and forward the conversation to agent waiting list. |
+
+## Call Operation
 > ![operation get](/images/ope-get.png)
 Try Get Screen
 ![operation get try](/images/ope-get-try.png)
@@ -109,15 +145,6 @@ How to use in output section
 ![operation output](/images/ope-get-output.png)
 Demo test for this intent
 ![operation chat](/images/ope-get-chat.png)
-
-Operation is a way to trigger an external resource event or save to cache. There are two types of operation. These are as follow...
-
-|         Type | Description                        |
-|-------------:|------------------------------------|
-| Call Service | Get or Post web request operation  |
-|        Cache | Save to cache a variable operation |
-
-### Call Service
 
 Call Service is a way to interact with external resources or apis. There are two types of Call Service currently available.
 
@@ -137,6 +164,13 @@ In these operation types you can use following options
 
 In Try Get screen you can check if your endpoint is working correctly with our system. And save as example data to used in json-picker section. Json picker is a variable generator with gui. You can click the `+` button at the right of the text output to access to json-picker. After that you'll see a screen with mock data from your last try get.
 
+## Cache Operation
+> ![op_cache_set](/images/op_cache_set.png)
+
+You can either set or clear a key in user.prop scope with this operation. To use this you need to define your key in first textbox and value in second textbox. For example; `user.prop.lastKey` and `{{key}}`. To use this value in intents you need to start your key with $ character like `{{$user.prop.lastKey}}`.
+
+## ForwardToAgent Operation
+This operation disables bot in this conversation and puts the conversation agent waiting list.
 
 
 ## Forward
