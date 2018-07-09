@@ -1190,16 +1190,17 @@ If you want to join the chat and answer instead of chat-bot you can click the &q
   http://api.dahi.ai/dh/bot/tkn/59fff527e4b0cf33abf0c959 <span class="se">\</span>
   -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'x-requested-with: XMLHttpRequest'</span> <span class="se">\</span>
-  -d <span class="s1">'{"recipientId":"user_id" , "message":{ "text":"yemek"}}'</span>
+  -d <span class="s1">'{"recipientId":"user_id" , "message":{ "text":"yemek","type":"text"}}'</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>user_id</code> with a user_id and <code>59fff527e4b0cf33abf0c959</code> with your bot id.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">#</span><span class="w"> </span><span class="err">request</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">example</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">#</span><span class="w"> </span><span class="err">request</span><span class="w"> </span><span class="err">body</span><span class="w"> </span><span class="err">example</span><span class="p">,</span><span class="w"> </span><span class="err">(message.text</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">required)</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"recipientId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_id"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message_text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
