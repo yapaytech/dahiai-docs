@@ -6,16 +6,17 @@ curl -X POST \
   http://api.dahi.ai/dh/bot/tkn/59fff527e4b0cf33abf0c959 \
   -H 'content-type: application/json' \
   -H 'x-requested-with: XMLHttpRequest' \
-  -d '{"recipientId":"user_id" , "message":{ "text":"yemek"}}'
+  -d '{"recipientId":"user_id" , "message":{ "text":"yemek","type":"text"}}'
 ```
 > Make sure to replace `user_id` with a user_id and `59fff527e4b0cf33abf0c959` with your bot id.
 
 ```json
-# request body example
+# request body example, (message.text is required)
 {
   "recipientId": "user_id",
   "message": {
-    "text": "text"
+    "text": "message_text",
+    "type": "text"
   }
 }
 
