@@ -3,7 +3,7 @@
 
 ```shell
 curl -X POST \
-  http://api.dahi.ai/dahi/bot/tkn/59fff527e4b0cf33abf0c959 \
+  http://api.dahi.ai/dh/bot/tkn/59fff527e4b0cf33abf0c959 \
   -H 'content-type: application/json' \
   -H 'x-requested-with: XMLHttpRequest' \
   -d '{"recipientId":"user_id" , "message":{ "text":"yemek"}}'
@@ -50,6 +50,6 @@ You can use our dahi.ai chat-bot platform with our endpoint.
 
 You can learn your bot's bot_id (bot token) from bot settings page.
 
-`http://api.dahi.ai/dahi/bot/tkn/{bot_id}`
+`http://api.dahi.ai/dh/bot/tkn/{bot_id}`
 
 From response `result.messages` array is the response messages array.
