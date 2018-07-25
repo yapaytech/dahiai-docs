@@ -52,7 +52,7 @@ Adding an agent is easy;
 > ![Live-Script](/images/live-widget.png)
 
 This is the script you can use to add a live chat that your visitors can use to chat with your chat-bot or agents.
-Click "Copy to Clipboard" and paste the script in your website somewhere.
+Click "Copy to Clipboard" and paste the script inside your website's body.
 
 ### Live-Widget Script Settings
 
